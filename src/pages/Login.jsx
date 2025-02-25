@@ -2,30 +2,37 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import PexelsVideoPlayer from '../components/Video';
-//import "../themes/styles.css";
-//import "../public/images/logo"
+import "../themes/styles.css";
+import "../public/images/logo";
 
 
 function Login() {
   // State hooks for email and password input values
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   // Event handler for the form submission (login button)
   const handleSubmit = (e) => {
     e.preventDefault()
+  try {
     axios.post("http://localhost:3001/api/auth/login", { email, password })
-    .then(result => {console.log(result)
-    navigate("/api/giftlist")
+    .then(result => {
+      console.log(result)
+      if (result.data === "Success") {
+        navigate("/api/giftlist")
+      }
+      else {
+        alert("Your login failed. Please signup or contact your admin member for access.")
+      }
     })
-    .catch(err => console.log(err))
-}
+  } catch (err) {
+    console.log(err);
+    alert("An error happened during the login process. Please try again.");
+  }
+  };
 
-    // Here you can handle the login logic, like sending the data to an API
-  
-
-
-return (
+  return (
     <section className="vh-100">
       <div className="container-fluid">
         <div className="row">
@@ -101,4 +108,5 @@ return (
     </section>
   );
 }
+
 export default Login;
