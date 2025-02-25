@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+html, body {
+  height: 100%;
+  margin: 0; /* Make sure there's no default margin */
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

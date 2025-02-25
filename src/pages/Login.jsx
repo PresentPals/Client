@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import PexelsVideoPlayer from '../components/Video';
-import "../themes/styles.css";
-import "../public/images/logo";
+// import "../themes/styles.css";
+// import "../public/images/logo";
 
 
 function Login() {
