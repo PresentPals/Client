@@ -20,7 +20,7 @@ function Login() {
     .then(result => {
       console.log(result)
       if (result.data === "Success") {
-        navigate("/api/giftlist")
+        navigate("/api/giftlist/")
       }
       else {
         alert("Your login failed. Please signup or contact your admin member for access.")
@@ -33,15 +33,15 @@ function Login() {
   };
 
   return (
-    <section className="vh-100">
+    <section className="vh-100 vw-80" style={{backgroundColor: "black"}}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-sm-6 text-white">
-            <div className="px-5 ms-xl-4">
+            <div className="mt-4 px-5 ms-xl-4">
             <img 
-                src="../public/images/logo" 
+                src="/test-image.png" 
                 alt="PresentPals Logo" 
-                style={{ width: '50px', height: '50px', marginRight: '10px' }} 
+                style={{ width: '100px', height: '100px', marginRight: '10px' }} 
               />
             </div>
 
@@ -84,13 +84,13 @@ function Login() {
                   </button>
                 </div>
 
-                <p className="small mb-5 pb-lg-2 ">
-                  <a  href="#!" style={{ color: '#28E3DA' }}>Forgot password?</a>
-                </p>
                 <p>
-                  Don't have an account? <a href="#!" style={{ color: '#28E3DA' }}>Sign Up Here.</a>
+                  Don't have an account? <a href="/api/auth/signup" style={{ color: '#28E3DA' }}>Sign Up Here.</a>
                 </p>
 
+                <p className="small mb-5 pb-lg-2 " style={{ color: '#28E3DA' }}>Forgot your login or password? <br></br>
+                Please contact your admin family or friend member.
+                </p>
               </form>
             </div>
           </div>
