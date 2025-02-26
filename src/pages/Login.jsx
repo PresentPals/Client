@@ -8,7 +8,7 @@ import PexelsVideoPlayer from '../components/Video';
 
 function Login() {
   // State hooks for email and password input values
-  const [email, setEmail] = useState('')
+  const [accountEmail, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
@@ -16,7 +16,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
   try {
-    axios.post("http://localhost:3001/api/auth/login", { email, password })
+    axios.post("http://localhost:3001/api/auth/login", { accountEmail, password })
     .then(result => {
       console.log(result)
       if (result.data === "Success") {
@@ -56,7 +56,7 @@ function Login() {
                     type="email"
                     id="form2Example18"
                     className="form-control form-control-lg"
-                    value={email}
+                    value={accountEmail}
                     onChange={(e) => setEmail(e.target.value)} // Bind email input to state
                   />
                   <label className="form-label" htmlFor="form2Example18">Email address</label>

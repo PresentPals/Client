@@ -6,7 +6,7 @@
 
 html, body {
   height: 100%;
-  margin: 0; /* Make sure there's no default margin */
+  margin: 0; 
 }
 
 .logo {
