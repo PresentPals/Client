@@ -42,11 +42,15 @@ try {
         <div className="container h-250">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-9 col-lg-7 col-xl-6">
-              <div className="card" style={{ borderRadius: '15px' }}>
-                <div className="card-body p-1">
+              <div className="card" style={{ borderRadius: '10px' }}>
+                <div className="card-body p-1 d-flex flex-column align-items-center">
+                  <img 
+                   src='/test2-image.png'
+                   alt='PresentPals logo'
+                   style={{width: "150px", height: "130px", borderRadius: '10px' }}/>
                   <h2 className="text-uppercase text-center mb-5">Sign Up To Presentpals</h2>
 
-                  <form style={{ width: '30rem' }} onSubmit={handleSubmit}>
+                  <form style={{ width: '20rem' }} onSubmit={handleSubmit}>
                     {/* First Name */}
                     <div data-mdb-input-init className="form-outline mb-4">
                       <input

@@ -95,7 +95,7 @@ function Login() {
             </div>
           </div>
 
-          {/* Image Section */}
+          {/* Video Section */}
           <div className="col-sm-6 px-0 d-none d-sm-block">
             <div alt="Login video"
               className="w-100 vh-100"
