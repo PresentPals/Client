@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 //import "../themes/styles.css";
 
 
@@ -120,9 +120,9 @@ try {
 
                     <p className="text-center text-muted mt-5 mb-0">
                       Have already an account?{' '}
-                      <a href="/api/auth/login" className="fw-bold text-body">
+                      <Link className="fw-bold text-body" to="/api/auth/login">
                         <u>Login here</u>
-                      </a>
+                      </Link>
                     </p>
                   </form>
                 </div>

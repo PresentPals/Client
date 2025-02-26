@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import PexelsVideoPlayer from '../components/Video';
 // import "../themes/styles.css";
 // import "../public/images/logo";
@@ -85,7 +85,8 @@ function Login() {
                 </div>
 
                 <p>
-                  Don't have an account? <a href="/api/auth/signup" style={{ color: '#28E3DA' }}>Sign Up Here.</a>
+                  Don't have an account? 
+                  <Link className="" to="/api/auth/signup" style={{ color: '#28E3DA' }}>Sign Up Here.</Link>
                 </p>
 
                 <p className="small mb-5 pb-lg-2 " style={{ color: '#28E3DA' }}>Forgot your login or password? <br></br>
