@@ -19,7 +19,7 @@ function NewProfile() {
   const [child, setChild] = useState('');
   const [age, setAge] = useState('');
   const [admin, setAdmin] = useState(false);
-  const [image, setImage] = useState(null);  // State for image
+  const [userImage, setUserImage] = useState(null);  // State for userImage
 
   // Get the JWT token from localStorage
   const token = localStorage.getItem('jwtToken');
@@ -51,8 +51,8 @@ function NewProfile() {
 
     formData.append('isActive', child === 'Yes' ? true : false);
 
-    if (image) {
-      formData.append('image', image); // Append the selected image
+    if (userImage) {
+      formData.append('userImage', userImage); // Append the selected userImage
     }
 
     try {
@@ -73,9 +73,9 @@ function NewProfile() {
     }
   };
 
-   // Handle image file selection
-   const handleImageChange = (e) => {
-    setImage(e.target.files[0]); // Set the selected file as image
+   // Handle userImage file selection
+   const handleUserImageChange = (e) => {
+    setUserImage(e.target.files[0]); // Set the selected file as userImage
   };
 
   // Handle selection change in Form.Select
@@ -144,8 +144,8 @@ function NewProfile() {
               <Form.Label>Upload Photo</Form.Label>
               <Form.Control 
               type="file"
-              accept="image/*"
-              onChange={handleImageChange}
+              accept="userImage/*"
+              onChange={handleUserImageChange}
               />
             </Form.Group>
   
