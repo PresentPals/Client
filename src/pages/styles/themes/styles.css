@@ -41,6 +41,33 @@
     text-decoration: underline;
   }
   
+  /* ======================================== */
+  /*  Navigation and Hamburger Menu Styles    */
+  /* ======================================== */
+
+  /* Custom styling for the hamburger menu icon */
+
+  .navbar-toggler-icon {
+    background-color: #28E3DE; /* Set the color of the three lines */
+    width: 30px; /* Width of the lines */
+    height: 3px; /* Height of the lines */
+    border-radius: 5px; /* Round the corners of the lines */
+  }
+
+  /* Animation for menu showing */
+  .navbar-collapse.show {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+  }
+
   /* ============================= */
   /*  Typography                   */
   /* ============================= */
