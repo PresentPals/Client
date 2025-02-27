@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate, Link } from "react-router-dom";
 import PexelsVideoPlayer from '../components/Video';
-// import "../themes/styles.css";
-// import "../public/images/logo";
+import "../themes/styles.css";
+import "../public/images/logo";
 
 
 function Login() {
@@ -19,7 +19,7 @@ function Login() {
     axios.post("http://localhost:3001/api/auth/login", { accountEmail, password })
     .then(result => {
       console.log(result)
-      if (result.data === "Success") {
+      if (result.data === 200) {
         navigate("/api/giftlist/")
       }
       else {

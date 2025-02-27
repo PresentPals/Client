@@ -10,6 +10,10 @@ const HamburgerMenu = () => {
     setIsMenuOpen(!isMenuOpen); // Toggle the state to open/close the menu
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+  }
+
   return (
     <div>
       {/* Hamburger Icon */}
@@ -46,6 +50,11 @@ const HamburgerMenu = () => {
           <li className="nav-item">
             <Link className="nav-link" to="/api/user" onClick={() => setIsMenuOpen(false)}>
               Profile
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/api/login" onClick={() => {setIsMenuOpen(false); handleLogout();}}>
+              Log Out
             </Link>
           </li>
         </ul>
