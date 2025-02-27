@@ -3,9 +3,11 @@
 /* ============================= */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black; /* Set the font color to black */
+  font-weight: bold; /* Make the text bold */
   }
   
   html {
@@ -32,6 +34,37 @@
     padding: 20px;
   }
   
+  /* The container to hold the left, form, and right sections */
+  .container {
+    display: flex;
+    justify-content: center; /* Centers the children horizontally */
+    align-items: flex-start;
+    gap: 20px; /* Gap between the sections */
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+/* Left and Right sections */
+.side {
+  flex: 1 1 25%; /* Take up 25% of the space on larger screens */
+  min-width: 200px; /* Ensure they don't shrink too much */
+  background-color: #28E3DE; /* Optional background color */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Form styling */
+.form {
+  flex: 1 1 70%; /* Take up 50% of the space on larger screens */
+  min-width: 300px; /* Ensure it doesn't shrink too much */
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
   a {
     color: #28e3da;
     text-decoration: none;
@@ -112,6 +145,11 @@
     transition: background 0.3s ease;
   }
   
+  .button {
+    background-color: #28E3DE;
+    color: black;
+  }
+
   .btn-primary {
     background: #28e3da;
     color: #000000;
@@ -155,6 +193,20 @@
     }
   }
 
+  /* For smaller screens, stack everything vertically */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
 
+    .side {
+      flex: 1 1 100%; /* Full width on small screens */
+      margin-bottom: 20px; /* Add space between sections */
+    }
 
+    .form {
+      flex: 1 1 100%; /* Full width on small screens */
+    }
+  }
   
