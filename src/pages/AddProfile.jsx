@@ -18,7 +18,7 @@ function NewProfile() {
   const [child, setChild] = useState("");
   const [age, setAge] = useState("");
   const [admin, setAdmin] = useState(false);
-  const [userImage, setUserImage] = useState(null); // State for image
+  const [userImage, setUserImage] = useState(); 
 
   //Get the JWT token from localStorage
   const token = localStorage.getItem("jwtToken");
@@ -42,7 +42,6 @@ function NewProfile() {
     formData.append("firstname", firstname);
     formData.append("lastname", lastname);
     formData.append("phonenumber", phonenumber);
-    formData.append("child", child);
     formData.append("age", age);
     formData.append("admin", admin);
 
@@ -56,14 +55,15 @@ function NewProfile() {
     for (let pair of formData.entries()) {
       console.log(pair[0] + ": " + pair[1]);
     }
+    console.log(token);
 
     try {
-      const response = await fetch("http://localhost:5173/api/user/add", {
+      console.log("testing")
+      const response = await fetch("http://localhost:5000/api/user/add", {
         method: "POST",
-        body: JSON.stringify(formData),
+        body: formData,
         headers: {
-          "Authorization": `Bearer ${token}`, 
-          "content": "application/json"
+          "Authorization": `Bearer ${token}`
         },
       });
 
@@ -86,7 +86,7 @@ function NewProfile() {
 
   // Handle selection change in Form.Select
   const handleSelectChange = (e) => {
-    setChild(e.target.value); // Update the option state with the selected value
+    setChild(e.target.value); 
   };
 
   return (
