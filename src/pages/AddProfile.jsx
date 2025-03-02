@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-import "../themes/Profiles.css";
+import "../styling/Profiles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 
 function NewProfile() {
