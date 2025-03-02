@@ -6,6 +6,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NewProfile from './pages/AddProfile';
+import DisplayProfiles from './pages/Profiles';
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <Routes>
         <Route path='/api/auth/login' element={<Login/>}/>
         <Route path='/api/auth/signup' element={<Signup/>}/>
-        <Route path='/api/user/' element={<NewProfile/>}/>
+        <Route path='/api/user/' element={<DisplayProfiles/>}/>
+        <Route path='/api/user/add' element={<NewProfile/>}/>
       </Routes>
     </BrowserRouter>
   )
