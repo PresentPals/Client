@@ -1,3 +1,6 @@
+## Client5 App.js Index.js files
+
+### Main.jsx File
 ![image_app.jsx](./src/images/app_jsx.png)
 
 This code is the entry point for the React application. It sets up and renders the main App component to the web page. It sues React 18's createRoot API and includes StrictMode for development time checks. Additionally global CSS is applied from the imported index.css file.
