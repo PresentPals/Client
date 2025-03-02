@@ -51,7 +51,7 @@ This code is used for the useState hook to declare a state variable. The <b>coun
 - the <b>className="logo"</b> applies to a CSS class image the .logo class is defined in the App.css styling.
 - the <b>alt="Vite logo"</b> This supplies an alternative text that is displayed if the image cannot load.
 - the <b>h1</b> Is the simple heading element.
-- the <b>clasName="card">---</div>  is a styled container.
+- the <b>clasName="card">---</div></b>  is a styled container.
 - the <b>button onClick()</b> this will trigger an event once the button is clicked, the event triggers a function that updates the state. setCount is called with an updated value: <b>count + 1</b>.
 - <b>count is {count}</b> This is a dynamic expression that displays the current value of the count state. I will display "count is 0" and when the button is clicked count will update and the button will show the updated value.
 - <b><p></b> This element provides a message to the user.
@@ -94,29 +94,3 @@ Rendering the App component - this grabs the DOM element with the id-"root". In 
 <b>StrictMode</b> is a component that wraps your entire app to help identify potential issues in the development. This doesn't affect production builds, but in development, React will perform additional checks and display warnings if any issues are found. The StrictMode here is wrapping the <App /> component, meaning all components inside APP and their descendants will be checked for issues. The <App /> componentis the main component of your app. It's React component that you want to render in the DOM and I could contain other child components and defines the core logic and layout of the application.
 
 This code is responsible for initialising and rendering the React application, it creates the root container in the DOM, and the App component is rendered inside a StrictMode wrapper to help catch development issues.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
