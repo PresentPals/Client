@@ -19,8 +19,9 @@ function Login() {
     axios.post("http://localhost:5000/api/auth/login", { accountEmail, password })
     .then(result => {
       console.log(result)
-      if (result.data === 200) {
-        navigate("/api/giftlist/")
+      if (result.status === 200) {
+        localStorage.setItem('token', result.data.token);
+        navigate("/api/user/")
       }
       else {
         alert("Your login failed. Please signup or contact your admin member for access.")

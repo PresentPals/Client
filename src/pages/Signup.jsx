@@ -20,8 +20,8 @@ try {
     axios.post("http://localhost:5000/api/auth/signup", { firstname, lastname, accountEmail, password })
     .then(result => {
       console.log(result)
-      if (result.data === "Success") {
-        navigate("/api/user/")
+      if (result.status === 200) {
+        alert("You have signed successfully, please login via the login page.")
       }
       else {
         alert("Your signup failed. Please re enter new signup details.")
