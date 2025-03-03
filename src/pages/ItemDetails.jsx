@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import "../themes/styles.css";
+import "../public/images/logo";
+import HamburgerMenu from "../components/HamburgerMenu"
 
 const Wishlist = () => {
   const [items, setItems] = useState([
