@@ -23,8 +23,6 @@ function DisplayProfiles() {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        // const token = localStorage.getItem("token");
-        // console.log(token);
 
         const response = await authAxios.get("/user/");
 
@@ -53,13 +51,14 @@ function DisplayProfiles() {
           <li key={profile._id}>
             <Link to={`${profile._id}`}>
               <button>
+                <div dangerouslySetInnerHTML={{ __html: profile.userImage }} />               
                 {profile.firstname} {profile.lastname}
               </button>
             </Link>
           </li>
         ))}
       </ul>
-      <a href="add">
+      <a href="/api/user/add">
         <button variant="primary">Add New Profile</button>
       </a>
     </div>
