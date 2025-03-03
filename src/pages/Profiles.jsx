@@ -5,23 +5,32 @@ import axios from "axios";
 import HamburgerMenu from "../components/HamburgerMenu";
 import "../styling/Profiles.css";
 
+const token = localStorage.getItem("token");
+console.log(token);
+
+const apiUrl = "http://localhost:5000/api";
+
+const authAxios = axios.create({
+  baseURL: apiUrl,
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
 function DisplayProfiles() {
   const [profiles, setProfiles] = useState([]);
 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:5000/api/user/", {
-          // headers: {
-          //   Authorization: `Bearer ${token}`,
-          // },
-        });
+
+        const response = await authAxios.get("/user/");
+
         console.log("Response data:", response.data);
         if (Array.isArray(response.data.users)) {
           setProfiles(response.data.users);
         } else {
-          setProfiles([]); 
+          setProfiles([]);
         }
       } catch (error) {
         console.error("Error fetching profiles:", error);
@@ -41,16 +50,19 @@ function DisplayProfiles() {
         {profiles.map((profile) => (
           <li key={profile._id}>
             <Link to={`${profile._id}`}>
-              <button>{profile.firstname} {profile.lastname}</button>
+              <button>
+                <div dangerouslySetInnerHTML={{ __html: profile.userImage }} />               
+                {profile.firstname} {profile.lastname}
+              </button>
             </Link>
           </li>
         ))}
       </ul>
-      <a href="user/add">
+      <a href="/api/user/add">
         <button variant="primary">Add New Profile</button>
       </a>
     </div>
   );
-};
+}
 
 export default DisplayProfiles;

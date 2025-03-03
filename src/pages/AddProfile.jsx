@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 
 import "../styling/Profiles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
+import AvatarSelection from "../components/CreateAvatar";
 
 function NewProfile() {
   const [userEmail, setUserEmail] = useState("");
@@ -15,6 +16,7 @@ function NewProfile() {
   const [age, setAge] = useState("");
   const [admin, setAdmin] = useState(false);
   const [userImage, setUserImage] = useState();
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   //Get the JWT token from localStorage
   const token = localStorage.getItem("token");
@@ -40,9 +42,8 @@ function NewProfile() {
       age: age,
       admin: admin,
       child: child === "Yes" ? true : false, // Convert 'Yes'/'No' to true/false
-      userImage: userImage
+      userImage: selectedAvatar,
     };
-    
 
     try {
       const response = await axios.post(
@@ -50,8 +51,7 @@ function NewProfile() {
         data,
         {
           headers: {
-            "Content-Type": "application/json", 
-            // Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -68,6 +68,10 @@ function NewProfile() {
   const handleSelectChange = (e) => {
     setChild(e.target.value);
   };
+  // Handle avatar selection from AvatarSelection component
+  const handleAvatarSelection = (avatar) => {
+    setSelectedAvatar(avatar);
+  };
 
   return (
     <div>
@@ -75,6 +79,9 @@ function NewProfile() {
       <div className="container">
         <img src="ppals_logo.png" />
         <h2>Add Profile</h2>
+        {/* Avatar Selection */}
+        <AvatarSelection onAvatarSelect={handleAvatarSelection} />
+        <br></br>
         <form className="vertical-form" onSubmit={handleSubmit}>
           <input
             type="email"
@@ -118,7 +125,12 @@ function NewProfile() {
             onChange={(e) => setAdmin(e.target.checked)}
           />
           <label htmlFor="Child">Choose an option:</label>
-          <select id="Child" name="Are you a chiild ?" value={child} onChange={handleSelectChange}>
+          <select
+            id="Child"
+            name="Are you a chiild ?"
+            value={child}
+            onChange={handleSelectChange}
+          >
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
@@ -129,11 +141,13 @@ function NewProfile() {
             onChange={(e) => setAge(e.target.value)}
             placeholder="Age"
           />
-          <button variant="primary" type="submit">Add Profile</button>
+          <button variant="primary" type="submit">
+            Add Profile
+          </button>
         </form>
       </div>
     </div>
   );
-};
+}
 
 export default NewProfile;
