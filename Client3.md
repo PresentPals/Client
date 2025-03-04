@@ -9,12 +9,13 @@ This code imports the <b>useState</b> hook from React. The <b>useState</b> is a 
 - current state - (like count)
 - update state - setCount which is a function that you can use to update the state.
 
-        import reactLogo from './assets/react.svg'
+    ```import reactLogo from './assets/react.svg'```
 
 This code imports React logo from a file named react.svg located in the assets folder inside the project. This logo is used in the components JSX with HTML like code.
 
         import viteLogo from '/vite.svg'
 This also imports the Vite logo, similar to the React logo also found in the assets folder inside the project.
+
 
     import './App.css'
 
