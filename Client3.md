@@ -3,13 +3,14 @@
 
 This code is part of the React component and is broken down line by line for better clarity below .
 
-    import { useState } from 'react'
+        import { useState } from 'react'
 
 This code imports the <b>useState</b> hook from React. The <b>useState</b> is a function that allows you to add state to your functional components. In React, state refers to variables that are used to store information like user input and button status that does change over time. When calling useState you can get two things;
 - current state - (like count)
 - update state - setCount which is a function that you can use to update the state.
 
-    ```import reactLogo from './assets/react.svg'```
+
+        import reactLogo from './assets/react.svg'
 
 This code imports React logo from a file named react.svg located in the assets folder inside the project. This logo is used in the components JSX with HTML like code.
 
@@ -17,7 +18,7 @@ This code imports React logo from a file named react.svg located in the assets f
 This also imports the Vite logo, similar to the React logo also found in the assets folder inside the project.
 
 
-    import './App.css'
+        import './App.css'
 
 This code line imports the CSS styles folder for the component. App.css is a file where you can define custom styles that apply specifically to this component. It is a way of keeping your component styles organised in separate files which can be applied to elements within the component.
 
@@ -28,7 +29,7 @@ This code line imports the CSS styles folder for the component. App.css is a fil
 
 This functional component is React allows you to create components as functions that return JSX (JavaScript SML) code. I looks very similar to HTML but allows JavaScript code and logic to be embedded inside. The APP component is the default component of the app and is the first one that is displayed when the app first loads.
 
-      const [count, setCount] = useState(0)
+        const [count, setCount] = useState(0)
 
 This code is used for the useState hook to declare a state variable. The <b>count</b> is a variable that stores the state. The <b>setCount</b> is a function that lets you update the state (by modifiying the value of count). The <b>0</b> inside <b>useState</b> is the initial value of count (default). This means when the app first loads the count starts at 0.
 
@@ -63,7 +64,7 @@ This code is used for the useState hook to declare a state variable. The <b>coun
 
 This code is the entry point of the React application, which is responsible for rendering the main APP component to the DOM
 
-    import {StrictMode} from 'react'
+        import {StrictMode} from 'react'
 
 This code imports the StrictMode component from React, it is a tool for highlighting potential problems in an application. It doesn't render anything visible in the UI but it helps identify issues with your app, for example;
 - detecting unsafe lifecycles.
@@ -74,19 +75,19 @@ This code imports the StrictMode component from React, it is a tool for highligh
 
 This code imports createRoot from the react-dom/client package, the ReactDOM.render() method was used to render a React component. The preferred method is to use createRoot() which enables better concurrency and improved performance.
 
-    import './index.css'
+        import './index.css'
 
 This imports the global CSS file for the app (index.css). This file typically contains base styles for the entire application (eg. resetting default browser styles, setting font styles etc).
 
-    import App from './App.jsx'
+        import App from './App.jsx'
 
 This line of code imports the APP component from the App.jsx file and contains the main component that wil be rendering inside the root DOM element.
 
-    createRoot(document.getElementById('root')).render(
-    <StrictMode>
-    <App />
-    </StrictMode>,
-    )
+        createRoot(document.getElementById('root')).render(
+        <StrictMode>
+        <App />
+        </StrictMode>,
+        )
 
 Rendering the App component - this grabs the DOM element with the id-"root". In most React apps there is an HTML file like index.html that contains a <b>div id=root element</b>. This is where React will inject and render the app. This code creates a root React container on the DOM element with the id="root" for you to use this container to manage and render the component tree.
 
