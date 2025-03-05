@@ -186,3 +186,4 @@ This colour coded system allowed us to see at a glance the stages of the tasks, 
 ![image_trello_2](./public/images/Trello2.png)
 ![image_trello_3](./public/images/Trello3.png)
 ![image_trello_4](./public/images/Trello4.png)
+![image_trello_5](./public/images/Trello5.png)
