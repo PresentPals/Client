@@ -13,6 +13,6 @@ export const ChildStatus = () => {
         };
     } catch (error) {
         console.error("Invalid token:", error);
-        return { childId: false, childId: null }; // Return default values in case of an error
+        return { child: false, childId: null }; // Return default values in case of an error
     }
 };
