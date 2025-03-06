@@ -7,14 +7,16 @@
 ## Repositories
 
 [GitHub_Repository](https://github.com/PresentPals)
+
 [GitHub_Client](https://github.com/PresentPals/Client)
+
 [GitHub_Server](https://github.com/PresentPals/server)
 
 ## Trello Board
 [Trello_Board](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
 
 
-### Frontend Installation Instructions
+## Frontend Installation Instructions
 1.  Clone the Front-End Repository:
 
 Use the following command to clone the repository;
@@ -47,7 +49,7 @@ In the root directory of the project, create a .env file and add the following;
     Ensure the backend server is running on port 8080 using the instructions provided below.
 
 
-### Backend Installation Instructions
+## Backend Installation Instructions
 
 1.  Create a .env File;
 
