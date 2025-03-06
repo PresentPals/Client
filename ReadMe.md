@@ -5,6 +5,7 @@
 <b>Developed by Darren Small, Tania Magro , and Venita Kissell</b>
 
 ## Repositories
+![GitHub](./public/images/GitHub.png)
 
 [GitHub_Repository](https://github.com/PresentPals)
 
