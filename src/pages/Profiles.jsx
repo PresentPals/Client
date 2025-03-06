@@ -7,7 +7,7 @@ import HamburgerMenu from "../components/HamburgerMenu";
 import { AdminStatus } from "../authorise/AdminStatus";
 import { ChildStatus } from "../authorise/ChildStatus";
 
-import "./styles/themes/styles.css";
+import "./styles/styles.css";
 
 function DisplayProfiles() {
   const [profiles, setProfiles] = useState([]);

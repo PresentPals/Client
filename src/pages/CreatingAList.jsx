@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-import "./styles/themes/styles.css";
+import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 
 

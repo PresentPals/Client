@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode"; // for decoding JWT token if needed
 import { useParams, useNavigate } from "react-router-dom"; // Import useParams to access URL params
 import { AdminStatus } from "../authorise/AdminStatus";
 
-import "./styles/themes/styles.css";
+import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 import AvatarSelection from "../components/CreateAvatar";
 
