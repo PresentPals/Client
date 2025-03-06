@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./styles/styles.css";
+import "./styles/themes/styles.css";
 
 function Signup() {
   // State hooks for email and password input values

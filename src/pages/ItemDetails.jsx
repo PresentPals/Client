@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import "../themes/styles.css";
-import "../public/images/logo";
+import "./styles/themes/styles.css";
+// import "../public/images/logo";
 import HamburgerMenu from "../components/HamburgerMenu"
 
 const Wishlist = () => {

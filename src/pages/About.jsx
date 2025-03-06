@@ -1,7 +1,7 @@
 import React from 'react';
 import HamburgerMenu from "../components/HamburgerMenu";
 import LoginVideo from '../components/LoginVideo';
-import "./styles/styles.css";
+import "./styles/themes/styles.css";
 
 function About() {
     return (
