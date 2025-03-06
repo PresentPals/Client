@@ -64,6 +64,13 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.form-control {
+  border-width: 3px;
+}
+.form-label {
+  color:#28E3DE;
+  margin-top: 3px;
+}
 
   a {
     color: #28e3da;
