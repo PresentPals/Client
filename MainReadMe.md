@@ -2,6 +2,11 @@
 
 <b>Developed by Darren Small, Tania Magro , and Venita Kissell</b>
 
+
+[GitHub_Repository](https://github.com/PresentPals)
+
+[Trello_Board](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
+
 ### Frontend Installation Instructions
 1.  Clone the Front-End Repository:
 
