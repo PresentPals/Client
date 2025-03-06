@@ -7,13 +7,14 @@ import HamburgerMenu from "../components/HamburgerMenu";
 
 
 
-const EventForm = () => {
+
+function EventForm () {}
   const [formData, setFormData] = useState({
     title: '',
     eventDate: '',
     description: '',
-    recipient: 'Me', // Default selection
-    privateList: false
+    recipient: '', // Default selection // Need to com back to this section and update
+    privateList: false // Need to comeback and update with details on how to share the list
   });
 
   const handleChange = (e) => {

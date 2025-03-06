@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import "../themes/HambugerMenu.css";
+// import "../styling/HamburgerMenu.css";
+import "../pages/styles/styles.css";
+
 
 const HamburgerMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Track if the menu is open or not
@@ -11,7 +13,10 @@ const HamburgerMenu = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
+ 
+    localStorage.removeItem("token");
+
+    console.log("Token removed:", !localStorage.getItem("token"));
   }
 
   return (
@@ -48,12 +53,12 @@ const HamburgerMenu = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/api/user" onClick={() => setIsMenuOpen(false)}>
-              Profile
+            <Link className="nav-link" to="/api/user/" onClick={() => setIsMenuOpen(false)}>
+              Profiles
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/api/login" onClick={() => {setIsMenuOpen(false); handleLogout();}}>
+            <Link className="nav-link" to="/api/auth/login" onClick={() => { handleLogout();}}>
               Log Out
             </Link>
           </li>
