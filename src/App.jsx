@@ -20,6 +20,7 @@ function App() {
         <Route path='/api/user/' element={<DisplayProfiles/>}/>
         <Route path='/api/user/add' element={<NewProfile/>}/>
         <Route path='/api/user/:id' element={<EditProfile />}/>
+        <Route path='/api/user/'
       </Routes>
     </BrowserRouter>
   )

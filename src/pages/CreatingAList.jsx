@@ -8,7 +8,7 @@ import HamburgerMenu from "../components/HamburgerMenu";
 
 
 
-const EventForm = () => {
+function EventForm () {}
   const [formData, setFormData] = useState({
     title: '',
     eventDate: '',
