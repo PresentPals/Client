@@ -1,11 +1,18 @@
+![PresentPals_Logo](./public/images/PresentPals_Logo.png)
+
 # Part B - PresentPals Gift List Application
 
 <b>Developed by Darren Small, Tania Magro , and Venita Kissell</b>
 
+## Repositories
 
 [GitHub_Repository](https://github.com/PresentPals)
+[GitHub_Client](https://github.com/PresentPals/Client)
+[GitHub_Server](https://github.com/PresentPals/server)
 
+## Trello Board
 [Trello_Board](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
+
 
 ### Frontend Installation Instructions
 1.  Clone the Front-End Repository:
@@ -192,3 +199,13 @@ This colour coded system allowed us to see at a glance the stages of the tasks, 
 ![image_trello_3](./public/images/Trello3.png)
 ![image_trello_4](./public/images/Trello4.png)
 ![image_trello_5](./public/images/Trello5.png)
+
+
+## Discord Server
+
+We established a Discord server to facilitate streamlined communication and enhance our collaboration accross our team. To improve efficiency we leveraged the lounge feature and utilised screen sharing enabling us to visualise and discuss changes in real time, as well as carry out testing.
+
+![image_Discord1](./public/images/Discord_Server1.png)
+![image_Discord2](./public/images/Discord_Server2.png)
+![image_Discord3](./public/images/Discord_Server3.png)
+
