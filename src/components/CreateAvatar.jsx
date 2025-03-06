@@ -9,7 +9,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
 
   useEffect(() => {
     // Generate multiple avatars
-    const seedsAd = ['George','Liam','Kingston','Maria', 'Alice', 'Bob', 'Charlie', 'Emery', 'Jameson','Avery', 'Sarah'];
+    const seedsAd = ['George','Liam','Kingston','Maria', 'Alice', 'Bob', 'Charlie', 'Emery', 'Jameson','Avery', 'Sarah', 'Jude'];
     const generatedAvatarsAd = seedsAd.map(seed => {
       const avatar = createAvatar(adventurer, {
         seed,
@@ -17,7 +17,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
       });
       return avatar.toString(); // Return the SVG string
     });
-    const seedsBs = ['Andrea', 'Sawyer', 'Maria', 'Andrea', 'Avery', 'Caleb','Sarah'];
+    const seedsBs = ['Kingston', 'Sawyer', 'Maria', 'Andrea', 'Avery', 'Caleb','Sarah'];
     const generatedAvatarsBs = seedsBs.map(seed => {
       const avatar = createAvatar(bigSmile, {
         seed,
@@ -35,7 +35,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
   };
 
   return (
-    <div className="avatar-selection">
+    <div className="d-flex flex-column justify-content-center align-items-center">
       <h3>Select Your Avatar</h3>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
         {avatars.map((avatar, index) => (
@@ -54,7 +54,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
       </div>
 
       {selectedAvatar && (
-        <div className="selected-avatar">
+        <div className="d-flex flex-column justify-content-center align-items-center">
           <h3>Your selected avatar:</h3>
           <div dangerouslySetInnerHTML={{ __html: selectedAvatar }} />
         </div>
