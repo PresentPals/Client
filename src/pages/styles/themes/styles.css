@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: black; /* Set the font color to black */
+  /* color: black; Set the font color to black */
   font-weight: bold; /* Make the text bold */
   }
   
@@ -64,6 +64,14 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+.form-control {
+  border-width: 3px;
+  
+}
+.form-label {
+  color:#28E3DE;
+  margin-top: 3px;
+}
 
   a {
     color: #28e3da;
@@ -85,6 +93,9 @@
     width: 30px; /* Width of the lines */
     height: 3px; /* Height of the lines */
     border-radius: 5px; /* Round the corners of the lines */
+  }
+  .nav-item {
+    color: #28E3DE;
   }
 
   /* Animation for menu showing */
@@ -108,10 +119,13 @@
   h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     margin-bottom: 10px;
+    color: #28E3DE;
+    
   }
   
   p {
     margin-bottom: 15px;
+    color: #28E3DE;
   }
   
   /* ============================= */
