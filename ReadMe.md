@@ -139,7 +139,7 @@ Front-end testing was carried out through various stages to ensure our applicati
 Each of the features were developed locally and systematically tested in a local development environment. This initial testing phase involved testing the functionality of individual functions, components, and pages.
 
 <b>Public Development Testing</b>
-Once the features were establised in the local environment, they were pushed to a development branch. Here, our testing was carried out using a public development database to simulate real-world usage and ensure compatibility with production settings. This phase also included testing on different devices and screen sizes, such as iphones, tables and desktops to ensure the application’s accessibility and responsiveness.
+Once the features were establised in the local environment, they were pushed to a development branch. Here, our testing was carried out using a public development database to simulate real-world usage and ensure compatibility with production settings. This phase also included testing on different devices and screen sizes, such as iphones, tablets and desktops to ensure the application’s accessibility and responsiveness.
 
 <b>Production User Testing</b>
 Features were then tested in a staging environment that closely mirrored the production setup. This phase involved gathering feedback from real users to validate the usability and functionality of the application in a near-production environment.
@@ -212,3 +212,8 @@ We established a Discord server to facilitate streamlined communication and enha
 ![image_Discord2](./public/images/Discord_Server2.png)
 ![image_Discord3](./public/images/Discord_Server3.png)
 
+
+
+## Testing
+
+Extensive testing was carried out in a manual format
