@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { AdminStatus } from '../authorise/AdminStatus';
 // import "../styling/HamburgerMenu.css";
 import "../pages/styles/styles.css";
 
@@ -18,6 +19,8 @@ const HamburgerMenu = () => {
 
     console.log("Token removed:", !localStorage.getItem("token"));
   }
+
+  const isAdmin = AdminStatus();
 
   return (
     <div>
@@ -42,11 +45,13 @@ const HamburgerMenu = () => {
               About
             </Link>
           </li>
+          { isAdmin && (
           <li className="nav-item">
-            <Link className="nav-link" to="/api/giftlist/" onClick={() => setIsMenuOpen(false)}>
+            <Link className="nav-link" to="/api/event/" onClick={() => setIsMenuOpen(false)}>
             Create A List
             </Link>
           </li>
+          )}
           <li className="nav-item">
             <Link className="nav-link" to="/api/giftlist" onClick={() => setIsMenuOpen(false)}>
             Gift Lists
