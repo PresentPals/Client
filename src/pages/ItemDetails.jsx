@@ -1,49 +1,152 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import "../themes/styles.css";
-import "../public/images/logo";
-import HamburgerMenu from "../components/HamburgerMenu"
+import React, { use, useEffect, useState } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useParams } from "react-router-dom";
 
-const Wishlist = () => {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      name: "Adidas Originals - Spezial",
-      price: "$189.99",
-      store: "Hype DC",
-      size: "Women US size 10",
-      color: "Cobalt and Fushia",
-      image: "https://via.placeholder.com/150", // Replace with actual image URL
-      purchasedBy: "Maddie",
-    },
-  ]);
+import "./styles/styles.css";
+import HamburgerMenu from "../components/HamburgerMenu";
+import { UserLogged } from "../authorise/LoggedUser";
+
+const ItemDetails = () => {
+  const { id } = useParams();
+  const [item, setItem] = useState([]);
+  const [purchased, setPurchased] = useState("Yes");
+  const [purchasedBy, setPurchasedBy] = useState("");
+
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:5001/api/giftlist/${id}/item`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setItem(response.data.giftItem || []);
+        console.log(item);
+      } catch (error) {
+        console.error("Error fetching gift item", error);
+        if (
+          error.response &&
+          error.response.status === 404 &&
+          error.response.data.message
+        ) {
+          alert(error.response.data.message);
+        } else {
+          alert("Error updating profile!");
+        }
+      }
+    };
+
+    fetchItem();
+  }, [id]);
+
+  const handlePurchaseItem = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      const userLoggedIn = UserLogged();
+
+      const data = {
+        purchased: purchased === "Yes" ? true : false,
+        purchasedBy: userLoggedIn,
+      };
+
+      const response = await axios.patch(
+        `http://localhost:5001/api/giftlist/${id}/item`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        alert("Item marked as purchased successfully!");
+      } else {
+        alert("Trying to purchase failed, please try again.");
+      }
+    } catch (error) {
+      console.error("There was an error updating the profile!", error);
+    }
+  };
+
+  //Handle selection change in select
+  const handleSelectChange = (e) => {
+    setPurchased(e.target.value);
+  };
 
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center p-6">
-      <div className="bg-gray-900 p-4 rounded-lg">
-        <h1 className="text-3xl font-bold flex items-center">
-          <span className="text-teal-400 text-4xl mr-2">🎁</span> PRESENTPALS
-        </h1>
-      </div>
-      <h2 className="text-teal-400 text-2xl my-4">Wish List (Name)</h2>
-      <div className="w-full max-w-3xl bg-gray-800 p-6 rounded-lg">
-        {items.map((item) => (
-          <div key={item.id} className="flex flex-col md:flex-row items-center gap-6 mb-6">
-            <img src={item.image} alt={item.name} className="w-48 rounded-lg" />
-            <div className="bg-gray-700 p-4 rounded-lg w-full">
-              <h3 className="text-xl font-bold">{item.name}</h3>
-              <p className="text-lg">{item.price}</p>
-              <p className="text-sm text-gray-400">{item.store}</p>
-              <p className="text-sm">{item.size}</p>
-              <p className="text-sm">{item.color}</p>
+    <div>
+      <HamburgerMenu />
+      <div
+        style={{
+          textAlign: "center",
+          padding: "50px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+          height: "80vh",
+        }}
+      >
+        <div className="d-flex flex-column justify-content-center align-items-center">
+          <h1 className="text-3xl font-bold flex items-center">
+            View Gift Item:
+          </h1>
+
+          <h2 className="text-teal-400 text-2xl my-4 flex items-center">{item.giftName}</h2>
+          <div className="w-full max-w-3xl bg-gray-800 p-6 rounded-lg">
+            <div className="flex items-center gap-6 mb-6">
+              <img
+                src={item.giftImage}
+                alt={item.giftName}
+                className="w-48 rounded-lg"
+              />
+              <div className="bg-gray-700 p-4 rounded-lg w-full">
+                <label className=" flex items-center">Description of gift item requirements:</label>
+                <p className="text-lg">{item.giftDescription}</p>
+                <label>Available for purchase at this website address:</label>
+                <p className="text-lg">{item.giftWebAddress}</p>
+              </div>
             </div>
+            {item.purchased ? (
+              <label>{item.purchasedBy} has marked this as purchased.</label>
+            ) : (
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                <label style={{ textAlign: "center", marginBottom: "0.5rem" }}>
+                  Would you like to purchase this item ?
+                </label>
+                <label htmlFor="purchased" style={{ textAlign: "center", marginBottom: "0.5rem" }}>
+                  Confirm this option:
+                </label>
+                <select
+                  id="purchased"
+                  value={purchased}
+                  onChange={handleSelectChange}
+                  style={{ marginBottom: "1rem", width: "220px" }}
+                >
+                  <option value="Yes">Yes</option>
+                </select>
+                {/* Purchase Button */}
+                <button
+                  style={{ background: "#28e3da", fontSize: "20px" }}
+                  onClick={handlePurchaseItem}
+                >
+                  Mark You As Purchasing This Item.
+                </button>
+              </div>
+            )}
           </div>
-        ))}
-        <p className="bg-white text-black p-2 rounded text-center">Item purchased by Maddie</p>
+        </div>
       </div>
-      <button className="bg-teal-400 text-black px-6 py-2 rounded mt-4">Add Item</button>
     </div>
   );
 };
 
-export default Wishlist;
+export default ItemDetails;

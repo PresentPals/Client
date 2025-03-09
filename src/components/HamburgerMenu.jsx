@@ -47,13 +47,13 @@ const HamburgerMenu = () => {
           </li>
           { isAdmin && (
           <li className="nav-item">
-            <Link className="nav-link" to="/api/event/" onClick={() => setIsMenuOpen(false)}>
+            <Link className="nav-link" to="/api/giftlist/event" onClick={() => setIsMenuOpen(false)}>
             Create A List
             </Link>
           </li>
           )}
           <li className="nav-item">
-            <Link className="nav-link" to="/api/giftlist" onClick={() => setIsMenuOpen(false)}>
+            <Link className="nav-link" to="/api/giftlist/" onClick={() => setIsMenuOpen(false)}>
             Gift Lists
             </Link>
           </li>

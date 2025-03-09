@@ -1,108 +1,116 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import "../themes/styles.css";
-import "../public/images/logo";
-import HamburgerMenu from "../components/HamburgerMenu"
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
-const ItemForm = () => {
-  const [itemName, setItemName] = useState('');
-  const [purchased, setPurchased] = useState(false);
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [items, setItems] = useState([]); // Stores the list of items
+import HamburgerMenu from "../components/HamburgerMenu";
+import "./styles/styles.css";
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file)); // Show image preview
-    }
-  };
+function WishList() {
+  const { id } = useParams();
+  const [childList, setChildList] = useState([]);
+  const [childItems, setChildItems] = useState([]);
 
-  const handleAddItem = (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    const fetchGifts = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        console.log(token);
+        if (!token) {
+          console.error("No token found, so the user is not authenticated.");
+          return;
+        }
 
-    if (!itemName || !image) {
-      alert('Please enter an item name and upload an image.');
-      return;
-    }
+        const response = await axios.get(
+          `http://localhost:5001/api/giftlist/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-    // Create a new item object
-    const newItem = {
-      id: Date.now(), // Unique ID for each item
-      name: itemName,
-      purchased: purchased,
-      image: preview,
+        console.log("Response data:", response.data);
+
+        if (response.data.giftlist) {
+          setChildList(response.data.giftlist); 
+          setChildItems(response.data.giftlist.childGiftList || []); 
+        } else {
+          setChildList(null);
+          setChildItems([]);
+        }
+        setChildItems((items) =>
+          items.filter((childItems) => childItems.giftName !== "")
+        );
+      } catch (error) {
+        console.error("Error fetching the giftlist:", error);
+      }
     };
+    fetchGifts();
+  }, []);
 
-    // Add new item to the list
-    setItems([...items, newItem]);
-
-    // Clear the form
-    setItemName('');
-    setPurchased(false);
-    setImage(null);
-    setPreview(null);
-  };
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h2>Add an Item</h2>
-
-      {/* Item Name Input */}
-      <div>
-        <label>Item Name:</label>
-        <input 
-          type="text" 
-          value={itemName} 
-          onChange={(e) => setItemName(e.target.value)} 
-          required 
-        />
+    <div>
+      <HamburgerMenu className="dropdown-menu" />
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <img src="/ppals_logo.png" alt="logo" />
+        <h2>{childList.giftListTitle}</h2>
+        <h4>Wish List of: {childList.childUser}</h4>
       </div>
-
-      {/* Checkbox for Purchased */}
-      <div>
-        <label>
-          <input 
-            type="checkbox" 
-            checked={purchased} 
-            onChange={(e) => setPurchased(e.target.checked)} 
-          />
-          Purchased
-        </label>
+      <div className="d-flex justify-content-center flex-wrap">
+        {Array.isArray(childItems) && childItems.length > 0 ? (
+          childItems.map((gift, index) => (
+            <ul className="" key={index}>
+              {gift.giftImage} {gift.giftName} {gift.giftDescription}
+              <Link to={"item"}>
+                <button
+                  className="btn"
+                  style={{
+                    border: "4px solid #28E3DE",
+                    borderRadius: "20px",
+                    backgroundColor: "#28E3DE",
+                  }}
+                >
+                  View Gift Details
+                </button>
+              </Link>
+              <br></br>
+              <Link to={"add"}>
+                <button
+                  className="btn"
+                  style={{
+                    border: "4px solid #28E3DE",
+                    borderRadius: "20px",
+                    backgroundColor: "#28E3DE",
+                  }}
+                >
+                  Add Item To List
+                </button>
+              </Link>
+            </ul>
+          ))
+        ) : (
+          <div>
+            <label>
+              There are no current gift items. Select Add Item To List:
+            </label>
+            <Link to={"add"}>
+              <button
+                className="btn"
+                style={{
+                  border: "4px solid #28E3DE",
+                  borderRadius: "20px",
+                  backgroundColor: "#28E3DE",
+                }}
+              >
+                Add Item To List
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
-
-      {/* Image Upload */}
-      <div>
-        <label>Upload Image:</label>
-        <input 
-          type="file" 
-          accept="image/*" 
-          onChange={handleImageChange} 
-          required 
-        />
-      </div>
-
-      {/* Image Preview */}
-      {preview && <img src={preview} alt="Preview" style={{ width: '150px', marginTop: '10px', borderRadius: '8px' }} />}
-
-      <br /><br />
-      
-      {/* Add Item Button */}
-      <button onClick={handleAddItem}>Add Item</button>
-
-      <h2>Item List</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {items.map((item) => (
-          <li key={item.id} style={{ marginBottom: '15px', border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>
-            <strong>{item.name}</strong> {item.purchased ? "(Purchased)" : "(Not Purchased)"}
-            <br />
-            <img src={item.image} alt={item.name} style={{ width: '100px', marginTop: '5px', borderRadius: '8px' }} />
-          </li>
-        ))}
-      </ul>
     </div>
   );
-};
+}
 
-export default ItemForm;
+export default WishList;
