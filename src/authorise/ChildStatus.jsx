@@ -6,7 +6,6 @@ export const ChildStatus = () => {
 
     try {
         const decoded = jwtDecode(token);
-        // Return an object containing both `child` and `childId`
         return {
             child: decoded.child || false, // Default to false if `child` is not in the token
             childId: decoded.childId || null // Default to null if `childId` is not in the token
