@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "../public/images/PresentPals_Animated_Logo.mp4"
+
 
 const LoginVideo = () => {
   return (

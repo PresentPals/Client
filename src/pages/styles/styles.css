@@ -1,0 +1,226 @@
+/* ============================= */
+/*  CSS Reset (Normalize Styles) */
+/* ============================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* color: black; Set the font color to black */
+  font-weight: bold; /* Make the text bold */
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Universe', sans-serif;
+    background-color: #000000;
+    color: #28e3da;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ============================= */
+  /*  Global Styles                */
+  /* ============================= */
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* The container to hold the left, form, and right sections */
+  .container {
+    display: flex;
+    justify-content: center; /* Centers the children horizontally */
+    align-items: flex-start;
+    gap: 20px; /* Gap between the sections */
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+/* Left and Right sections */
+.side {
+  flex: 1 1 25%; /* Take up 25% of the space on larger screens */
+  min-width: 200px; /* Ensure they don't shrink too much */
+  background-color: #28E3DE; /* Optional background color */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Form styling */
+.form {
+  flex: 1 1 70%; /* Take up 50% of the space on larger screens */
+  min-width: 300px; /* Ensure it doesn't shrink too much */
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.form-control {
+  border-width: 3px;
+  
+}
+.form-label {
+  color:#28E3DE;
+  margin-top: 3px;
+}
+
+  a {
+    color: #28e3da;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* ======================================== */
+  /*  Navigation and Hamburger Menu Styles    */
+  /* ======================================== */
+
+  /* Custom styling for the hamburger menu icon */
+
+  .navbar-toggler-icon {
+    background-color: #28E3DE; /* Set the color of the three lines */
+    width: 30px; /* Width of the lines */
+    height: 3px; /* Height of the lines */
+    border-radius: 5px; /* Round the corners of the lines */
+  }
+  .nav-item {
+    color: #28E3DE;
+  }
+
+  /* Animation for menu showing */
+  .navbar-collapse.show {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+  }
+
+  /* ============================= */
+  /*  Typography                   */
+  /* ============================= */
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #28E3DE;
+    
+  }
+  
+  p {
+    margin-bottom: 15px;
+    color: #28E3DE;
+  }
+  
+  /* ============================= */
+  /*  Utility Classes               */
+  /* ============================= */
+  
+  /* Flexbox utilities */
+  .flex {
+    display: flex;
+  }
+  
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Button styles */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .button {
+    background-color: #28E3DE;
+    color: black;
+  }
+
+  .btn-primary {
+    background: #28e3da;
+    color: #000000;
+  }
+  
+  .btn-primary:hover {
+    background: #19bfb7;
+  }
+  
+  .btn-secondary {
+    background: #ffffff;
+    color: #000000;
+  }
+  
+  .btn-secondary:hover {
+    background: #c3c3c3;
+  }
+  
+  /* ============================= */
+  /*  Responsive Design             */
+  /* ============================= */
+  
+/* iPad 12-inch (approx. 1024px width) */
+@media (max-width: 1024px) {
+    .container {
+      padding: 24px;
+    }
+  }
+  
+  /* iPhone 16 Pro Max (approx. 430px width) */
+  @media (max-width: 480px) {
+    .container {
+      padding: 16px;
+    }
+  }
+  
+  /* Extra small screens (375px and below) */
+  @media (max-width: 375px) {
+    .container {
+      padding: 12px;
+    }
+  }
+
+  /* For smaller screens, stack everything vertically */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .side {
+      flex: 1 1 100%; /* Full width on small screens */
+      margin-bottom: 20px; /* Add space between sections */
+    }
+
+    .form {
+      flex: 1 1 100%; /* Full width on small screens */
+    }
+  }
+  
