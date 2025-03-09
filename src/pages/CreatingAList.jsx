@@ -25,7 +25,7 @@ const EventForm = () => {
   useEffect(() => {
     if (!token) return;
 
-  const fetchUsers = async () => {
+  const fetchChildUsers = async () => {
     try {
       const response = await axios.get("http://localhost:5001/api/user/", {
 
@@ -40,7 +40,7 @@ const EventForm = () => {
     }
   };
 
-  fetchUsers();
+  fetchChildUsers();
   }, [token]);
 
   const handleChange = (e) => {
@@ -54,13 +54,13 @@ const EventForm = () => {
     e.preventDefault();
 
     if (formData.childUser === "") {
-      alert("A child recipient of this event list has not been selected. Please choose an option.");
+      alert("A child recipient of this event list must be selected. Please choose an option.");
       return;
     }
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/giftlist/",
+        "http://localhost:5001/api/giftlist/event",
         formData,
         {
           headers: {
