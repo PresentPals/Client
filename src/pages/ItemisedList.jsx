@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import HamburgerMenu from "../components/HamburgerMenu";
@@ -13,6 +13,8 @@ function WishList() {
   const [childItems, setChildItems] = useState([]);
   const [users, setUsers] = useState([]);
   const [sharedUserName, setSharedUserName] = useState("");
+  const [deleted, setDeleted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGifts = async () => {
@@ -127,6 +129,34 @@ function WishList() {
     setSharedUserName("");
   };
 
+  // Handle Delete Wish List
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      // Send a DELETE request to remove the gift list
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(
+        `http://localhost:5001/api/giftlist/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setDeleted(true);
+        alert("That wish list has been deleted!"); // Set deleted state to true
+        setTimeout(() => {
+          navigate("/api/giftlist/"); // Redirect to events page after deletion
+        }, 1000); // Wait 1 second to show the message before redirecting
+      }
+    } catch (error) {
+      console.error("There was an error deleting this giftlist!", error);
+      alert("Error deleting giftlist!");
+    }
+  };
+
   const parentUsers = users.filter((user) => !user.child); // Users where child = false
 
   const isAdmin = AdminStatus();
@@ -139,13 +169,28 @@ function WishList() {
         <img src="/ppals_logo.png" alt="logo" />
         <h2>{childList.giftListTitle}</h2>
         <h4>Wish List of: {childList.childUser}</h4>
+        <h6>Wish List Description: {childList.listDescription}</h6>
       </div>
-      <div className="d-flex justify-content-center flex-wrap">
+      <div className="d-flex flex-column justify-content-center align-items-center">
         {Array.isArray(childItems) && childItems.length > 0 ? (
           childItems.map((gift, index) => (
-            <div className="d-flex justify-content-center flex-wrap">
-              <ul className="" key={index}>
-                {gift.giftImage} {gift.giftName} {gift.giftDescription}
+            <div className="d-flex flex-column justify-content-center align-items-center">
+              <ul
+                className="text-center"
+                key={index}
+                style={{
+                  listStyle: "none",
+                  padding: 0,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "15px",
+                }}
+              >
+                <div style={{ border: "3px solid white", padding: "20px" }}>
+                <li style={{ listStyle: "none" }}>{gift.giftImage}</li>
+                <li style={{ listStyle: "none" }}>{gift.giftName}</li>
+                <li style={{ listStyle: "none" }}>{gift.giftDescription}</li>
+                
                 {!child || isAdmin ? (
                   <Link to={`${gift._id}`}>
                     <button
@@ -176,6 +221,7 @@ function WishList() {
                     )}
                   </Link>
                 ) : null}
+                </div>
               </ul>
             </div>
           ))
@@ -211,7 +257,10 @@ function WishList() {
         >
           {/* Shared Users of this List */}
           <label>Share a adult to this wish list:</label>
-          <div style={childGroupStyle}>
+          <div
+            className="d-flex flex-column justify-content-center align-items-center"
+            style={childGroupStyle}
+          >
             <div>
               <select
                 name="sharedUser"
@@ -237,12 +286,23 @@ function WishList() {
                 Save Shared Adult.
               </button>
             </div>
-            <Link to="/api/giftlist/">
-              <button className="btn mt-3 btn-warning">Cancel / Back.</button>
-            </Link>
+            {isAdmin && (
+              <button
+                className="btn mt-3 mb-3 btn-danger"
+                type="submit"
+                onClick={handleDelete}
+              >
+                Delete This Wish List.
+              </button>
+            )}
           </div>
         </form>
       ) : null}
+      <div className="d-flex flex-column justify-content-center align-items-center">
+      <Link to="/api/giftlist/">
+      <button className="btn mt-3 btn-warning" >Cancel / Back.</button>
+      </Link>
+      </div>
     </div>
   );
 }
@@ -252,6 +312,5 @@ const childGroupStyle = {
   justifyContent: "space-around",
   marginBottom: "10px",
 };
-
 
 export default WishList;
