@@ -1,22 +1,24 @@
 import React, { use, useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 import { UserLogged } from "../authorise/LoggedUser";
+import { AdminStatus } from "../authorise/AdminStatus";
 
 const ItemDetails = () => {
   const { id, giftId } = useParams();
   const [item, setItem] = useState([]);
   const [purchased, setPurchased] = useState("Yes");
   const [purchasedBy, setPurchasedBy] = useState("");
+  const [deleted, setDeleted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchItem = async () => {
       try {
-
         console.log("giftId:", giftId)
         const token = localStorage.getItem("token");
         const response = await axios.get(
@@ -81,10 +83,40 @@ const ItemDetails = () => {
     }
   };
 
+  // Handle Delete of an Item
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    try {
+      // Send a DELETE request to remove the item
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(
+        `http://localhost:5001/api/giftlist/${id}/${giftId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setDeleted(true);
+        alert("This gift item has been deleted!"); 
+        setTimeout(() => {
+          navigate(`/api/giftlist/${id}`); // Redirect to the wish list page after deletion
+        }, 1000); // Wait 1 second before redirecting
+      }
+    } catch (error) {
+      console.error("There was an error deleting the profile!", error);
+      alert("Error deleting Item!");
+    }
+  };
+
   //Handle selection change in select
   const handleSelectChange = (e) => {
     setPurchased(e.target.value);
   };
+
+  const isAdmin = AdminStatus();
 
   return (
     <div>
@@ -148,6 +180,15 @@ const ItemDetails = () => {
               </div>
             )}
           </div>
+          {isAdmin && (
+                <button
+                  className="btn mt-3 mb-3 btn-danger"
+                  type="submit"
+                  onClick={handleDelete}
+                >
+                  Delete This Gift Item.
+                </button>
+              )}
         </div>
       </div>
     </div>
