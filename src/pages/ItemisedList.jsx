@@ -253,4 +253,5 @@ const childGroupStyle = {
   marginBottom: "10px",
 };
 
+
 export default WishList;

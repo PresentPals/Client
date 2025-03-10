@@ -16,6 +16,7 @@ const ItemDetails = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
+
         console.log("giftId:", giftId)
         const token = localStorage.getItem("token");
         const response = await axios.get(
