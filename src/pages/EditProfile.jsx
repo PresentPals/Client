@@ -8,6 +8,7 @@ import { AdminStatus } from "../authorise/AdminStatus";
 import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 import AvatarSelection from "../components/CreateAvatar";
+import DisplaySharedLists from "../components/SharedLists";
 
 function EditProfile() {
   const { id } = useParams();
@@ -301,6 +302,9 @@ function EditProfile() {
                 </button>
               )}
             </form>
+            {child?.toString() === "No" &&
+            <DisplaySharedLists userName={userName} />
+            }
           </div>
         )}
       </div>

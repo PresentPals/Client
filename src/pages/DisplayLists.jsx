@@ -42,7 +42,7 @@ function DisplayEvents() {
     }, []);
 
     const isAdmin = AdminStatus();
-    const { child } = ChildStatus();
+    const { child }  = ChildStatus();
     const UserLoggedIn = UserLogged();
     const displayChildEvent = events.find((event) => event.childUser === UserLoggedIn);
 
@@ -79,7 +79,7 @@ function DisplayEvents() {
                         backgroundColor: "#28E3DE",
                         }}
                     >Select To View: {event.giftListTitle}.
-                    The Date Of This Event: {event.dateEvent}
+                    The Date Of This Event: {new Date(event.dateEvent).toLocaleDateString()}
                     </button>
                     </Link>
                 </ul>

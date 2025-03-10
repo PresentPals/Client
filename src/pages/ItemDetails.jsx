@@ -8,7 +8,7 @@ import HamburgerMenu from "../components/HamburgerMenu";
 import { UserLogged } from "../authorise/LoggedUser";
 
 const ItemDetails = () => {
-  const { id } = useParams();
+  const { id, giftId } = useParams();
   const [item, setItem] = useState([]);
   const [purchased, setPurchased] = useState("Yes");
   const [purchasedBy, setPurchasedBy] = useState("");
@@ -16,9 +16,11 @@ const ItemDetails = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
+
+        console.log("giftId:", giftId)
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          `http://localhost:5001/api/giftlist/${id}/item`,
+          `http://localhost:5001/api/giftlist/${id}/${giftId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -27,7 +29,7 @@ const ItemDetails = () => {
         );
 
         setItem(response.data.giftItem || []);
-        console.log(item);
+        
       } catch (error) {
         console.error("Error fetching gift item", error);
         if (
@@ -55,9 +57,10 @@ const ItemDetails = () => {
         purchased: purchased === "Yes" ? true : false,
         purchasedBy: userLoggedIn,
       };
+      console.log("data:", data)
 
       const response = await axios.patch(
-        `http://localhost:5001/api/giftlist/${id}/item`,
+        `http://localhost:5001/api/giftlist/${id}/${giftId}`,
         data,
         {
           headers: {
@@ -67,7 +70,9 @@ const ItemDetails = () => {
       );
 
       if (response.status === 201) {
+        setPurchased(response.data.updatedPurchased || []);
         alert("Item marked as purchased successfully!");
+        window.location.reload(); 
       } else {
         alert("Trying to purchase failed, please try again.");
       }
@@ -104,8 +109,8 @@ const ItemDetails = () => {
           <div className="w-full max-w-3xl bg-gray-800 p-6 rounded-lg">
             <div className="flex items-center gap-6 mb-6">
               <img
-                src={item.giftImage}
-                alt={item.giftName}
+                src={item.giftImage || "No Image has been added."}
+                alt={""}
                 className="w-48 rounded-lg"
               />
               <div className="bg-gray-700 p-4 rounded-lg w-full">
@@ -116,7 +121,7 @@ const ItemDetails = () => {
               </div>
             </div>
             {item.purchased ? (
-              <label>{item.purchasedBy} has marked this as purchased.</label>
+              <label style={{color: "yellow"}}>{item.purchasedBy} has marked this as purchased.</label>
             ) : (
               <div className="d-flex flex-column justify-content-center align-items-center">
                 <label style={{ textAlign: "center", marginBottom: "0.5rem" }}>
