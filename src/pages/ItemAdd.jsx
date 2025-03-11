@@ -9,16 +9,16 @@ const AddGift = () => {
   const [giftName, setGiftName] = useState("");
   const [giftDescription, setGiftDescription] = useState("");
   const [giftWebAddress, setGiftWebAddress] = useState("");
-  const [giftImage, setGiftImage] = useState(null);
+  const [file, setFile] = useState(null);
   // const [purchased, setPurchased] = useState(false);
   const [preview, setPreview] = useState(null);
   const [items, setItems] = useState([]);
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setGiftImage(file);
-      setPreview(URL.createObjectURL(file)); // Show image preview
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setPreview(URL.createObjectURL(selectedFile)); // Show image preview
     }
   };
 
@@ -30,24 +30,23 @@ const AddGift = () => {
         return;
       }
       // Create a new item object
-      const newGift = {
-        giftName,
-        giftDescription,
-        giftWebAddress,
-        giftImage,
-        
-      };
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("giftName", giftName);
+      formData.append("giftDescription", giftDescription);
+      formData.append("giftWebAddress", giftWebAddress);
 
       const token = localStorage.getItem("token");
       const response = await axios.post(
         `http://localhost:5001/api/giftlist/${id}/add`,
-        { newGift },
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
-        });
+        }
+      );
 
       if (response.status === 200) {
         alert("Gift added successfully!");
@@ -70,7 +69,7 @@ const AddGift = () => {
     // Clear the form
     setGiftName("");
     setGiftDescription("");
-    setGiftImage(null);
+    setFile(null);
     setGiftWebAddress("");
     // setPurchased(false);
     setPreview(null);
@@ -149,9 +148,9 @@ const AddGift = () => {
         </button>
       </div>
       <div className="d-flex flex-column justify-content-center align-items-center">
-      <Link to={`/api/giftlist/${id}`}>
-      <button className="btn mt-3 btn-warning" >Cancel / Back.</button>
-      </Link>
+        <Link to={`/api/giftlist/${id}`}>
+          <button className="btn mt-3 btn-warning">Cancel / Back.</button>
+        </Link>
       </div>
     </div>
   );
