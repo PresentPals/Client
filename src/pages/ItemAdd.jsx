@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 
@@ -34,13 +34,9 @@ const AddGift = () => {
         giftName,
         giftDescription,
         giftWebAddress,
-        // giftImage: preview,
-        // purchased: purchased
+        giftImage,
+        
       };
-
-      // // Add new item to the setItems array
-      // const addItem = [...items, newGift];
-      // setItems(addItem);
 
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -49,6 +45,7 @@ const AddGift = () => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         });
 
@@ -130,24 +127,11 @@ const AddGift = () => {
             onChange={(e) => setGiftWebAddress(e.target.value)}
           />
         </div>
-        {/* Checkbox for Purchased
-      <div>
-        <label>
-          <input 
-            type="checkbox" 
-            checked={purchased} 
-            onChange={(e) => setPurchased(e.target.checked)} 
-          />
-          Purchased
-        </label>
-      </div> */}
-
         {/* Image Upload */}
         <div>
           <label>Upload Item Image:</label>
           <input type="file" accept="image/*" onChange={handleImageChange} />
         </div>
-
         {/* Image Preview */}
         {preview && (
           <img
@@ -163,6 +147,11 @@ const AddGift = () => {
         >
           Add Item
         </button>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center">
+      <Link to={`/api/giftlist/${id}`}>
+      <button className="btn mt-3 btn-warning" >Cancel / Back.</button>
+      </Link>
       </div>
     </div>
   );
