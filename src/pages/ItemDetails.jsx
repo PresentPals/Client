@@ -139,15 +139,25 @@ const ItemDetails = () => {
 
           <h2 className="text-teal-400 text-2xl my-4 flex items-center">{item.giftName}</h2>
           <div className="w-full max-w-3xl bg-gray-800 p-6 rounded-lg">
-            <div className="flex items-center gap-6 mb-6">
+            <div className="d-flex flex-wrap justify-content-center align-items-center">
               <img
-                src={item.giftImage || "No Image has been added."}
-                alt={""}
-                className="w-48 rounded-lg"
+                src={`http://localhost:5001${item.giftImage}`}
+                alt={"No Image has been added."}
+                style={{
+                  width: "280px",
+                  height: "180px",
+                  objectFit: "contain",
+                  borderRadius: "10px",
+                }}
               />
               <div className="bg-gray-700 p-4 rounded-lg w-full">
                 <label className=" flex items-center">Description of gift item requirements:</label>
-                <p className="text-lg">{item.giftDescription}</p>
+                <p className="text-lg" style={{
+                      listStyle: "none",
+                      width: "300px", 
+                      wordWrap: "break-word", 
+                      overflowWrap: "break-word",
+                    }}>{item.giftDescription}</p>
                 <label>Available for purchase at this website address:</label>
                 <p className="text-lg">{item.giftWebAddress}</p>
               </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
@@ -18,6 +18,7 @@ function NewProfile() {
   const [admin, setAdmin] = useState(false);
   const [userImage, setUserImage] = useState(null);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const navigate = useNavigate();
 
   //Get the JWT token from localStorage
   const token = localStorage.getItem("token");
@@ -65,6 +66,9 @@ function NewProfile() {
 
       if (response.status === 201) {
         alert("Profile updated successfully!");
+        setTimeout(() => {
+          navigate("/api/user"); // Redirect to profiles page after saved
+        }, 1000);
       } else {
         alert("Add new profile failed, please try again.");
       }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 import "./styles/styles.css";
@@ -11,6 +12,7 @@ const EventForm = () => {
   const decodedToken = token ? jwtDecode(token) : null;
   const accountEmail = decodedToken ? decodedToken.accountEmail : "";
 
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
   const [formData, setFormData] = useState({
@@ -71,6 +73,9 @@ const EventForm = () => {
 
       if (response.status === 201) {
         alert("Event list created successfully!");
+        setTimeout(() => {
+          navigate("/api/giftlist"); // Redirect to events page after saved
+        }, 1000);
       } else {
         alert("Something went wrong. Please try again.");
       }  

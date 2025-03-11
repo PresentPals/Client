@@ -104,6 +104,9 @@ function EditProfile() {
 
       if (response.status === 200) {
         alert("Profile updated successfully!");
+        setTimeout(() => {
+          navigate("/api/user"); // Redirect to profiles page after saved
+        }, 1000);
       } else {
         alert("Update failed, please try again.");
       }
@@ -151,7 +154,7 @@ function EditProfile() {
         alert("The Profile has been deleted!"); // Set deleted state to true
         setTimeout(() => {
           navigate("/api/user"); // Redirect to profiles page after deletion
-        }, 2000); // Wait 2 seconds to show the message before redirecting
+        }, 1000); // Wait 2 seconds to show the message before redirecting
       }
     } catch (error) {
       console.error("There was an error deleting the profile!", error);

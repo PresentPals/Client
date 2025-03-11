@@ -171,10 +171,10 @@ function WishList() {
         <h4>Wish List of: {childList.childUser}</h4>
         <h6>Wish List Description: {childList.listDescription}</h6>
       </div>
-      <div className="d-flex flex-column justify-content-center align-items-center">
+      <div className="d-flex flex-wrap justify-content-center align-items-center">
         {Array.isArray(childItems) && childItems.length > 0 ? (
           childItems.map((gift, index) => (
-            <div className="d-flex flex-column justify-content-center align-items-center">
+            <div>
               <ul
                 className="text-center"
                 key={index}
@@ -187,47 +187,62 @@ function WishList() {
                 }}
               >
                 <div style={{ border: "3px solid white", padding: "20px" }}>
-                <li style={{ listStyle: "none" }}>
-                  {gift.giftImage && (
-                  <img src={`http://localhost:5001${gift.giftImage}`}
-                  alt={gift.giftName}
-                  style={{ width: "280px", height: "180px", objectFit: "contain", borderRadius: "10px" }}
-                />
-                )}
-                </li>
-                <li style={{ listStyle: "none" }}>{gift.giftName}</li>
-                <li style={{ listStyle: "none" }}>{gift.giftDescription}</li>
-                
-                {!child || isAdmin ? (
-                  <Link to={`${gift._id}`}>
-                    <button
-                      className="btn"
-                      style={{
-                        border: "4px solid #28E3DE",
-                        borderRadius: "20px",
-                        backgroundColor: "#28E3DE",
-                      }}
-                    >
-                      View Gift Details
-                    </button>
-                    {gift.purchased && (
-                      <div
-                        className=""
+                  <li style={{ listStyle: "none" }}>
+                    {gift.giftImage && (
+                      <img
+                        src={`http://localhost:5001${gift.giftImage}`}
+                        alt={gift.giftName}
                         style={{
-                          color: "black",
-                          width: "300px",
-                          textAlign: "center",
-                          background: "yellow",
+                          width: "280px",
+                          height: "180px",
+                          objectFit: "contain",
+                          borderRadius: "10px",
+                        }}
+                      />
+                    )}
+                  </li>
+                  <li style={{ listStyle: "none" }}>{gift.giftName}</li>
+                  <li
+                    style={{
+                      listStyle: "none",
+                      width: "300px", 
+                      wordWrap: "break-word", 
+                      overflowWrap: "break-word",
+                    }}
+                  >
+                    {gift.giftDescription}
+                  </li>
+
+                  {!child || isAdmin ? (
+                    <Link to={`${gift._id}`}>
+                      <button
+                        className="btn"
+                        style={{
+                          border: "4px solid #28E3DE",
                           borderRadius: "20px",
-                          padding: "5px",
+                          backgroundColor: "#28E3DE",
                         }}
                       >
-                        Username:{gift.purchasedBy}, has marked this as
-                        purchased.
-                      </div>
-                    )}
-                  </Link>
-                ) : null}
+                        View Gift Details
+                      </button>
+                      {gift.purchased && (
+                        <div
+                          className=""
+                          style={{
+                            color: "black",
+                            width: "300px",
+                            textAlign: "center",
+                            background: "yellow",
+                            borderRadius: "20px",
+                            padding: "5px",
+                          }}
+                        >
+                          Username:{gift.purchasedBy}, has marked this as
+                          purchased.
+                        </div>
+                      )}
+                    </Link>
+                  ) : null}
                 </div>
               </ul>
             </div>
@@ -239,8 +254,10 @@ function WishList() {
             </label>
           </div>
         )}
+        </div>
+
         {child || isAdmin ? (
-          <div>
+          <div className="d-flex flex-column justify-content-center align-items-center mb-3">
             <br></br>
             <Link to={"add"}>
               <button
@@ -256,7 +273,7 @@ function WishList() {
             </Link>
           </div>
         ) : null}
-      </div>
+      
       {!child || isAdmin ? (
         <form
           className="d-flex flex-column justify-content-center align-items-center"
@@ -295,7 +312,7 @@ function WishList() {
             </div>
             {isAdmin && (
               <button
-                className="btn mt-3 mb-3 btn-danger"
+                className="btn mt-3 mb-2 btn-danger"
                 type="submit"
                 onClick={handleDelete}
               >
@@ -306,9 +323,9 @@ function WishList() {
         </form>
       ) : null}
       <div className="d-flex flex-column justify-content-center align-items-center">
-      <Link to="/api/giftlist/">
-      <button className="btn mt-3 btn-warning" >Cancel / Back.</button>
-      </Link>
+        <Link to="/api/giftlist/">
+          <button className="btn mt-3 btn-warning">Cancel / Back.</button>
+        </Link>
       </div>
     </div>
   );

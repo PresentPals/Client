@@ -171,7 +171,7 @@ function Signup() {
                     </div>
 
                     <p className="text-center text-muted mt-5 mb-0">
-                      Already Have A User name & Password ?{" "}
+                      Already Have A User Name & Password ?{" "}
                       <Link className="fw-bold text-body" to="/api/auth/login">
                         <u>Login here</u>
                       </Link>

@@ -30,7 +30,7 @@ function App() {
         <Route path='/api/user/:id' element={<EditProfile />}/>
         <Route path='/api/about' element={<About />}/>
         <Route path='/api/giftlist/event' element={<EventForm />}/>
-        <Route path='/api/giftlist/:id/item' element={<ItemDetails />}/>
+        <Route path='/api/giftlist/:id/:giftId' element={<ItemDetails />}/>
         <Route path='/api/giftlist/:id/add' element={<AddGift />}/>
         <Route path='/api/giftlist/' element={<DisplayEvents />}/>
         <Route path='/api/giftlist/:id' element={<WishList />}/>
