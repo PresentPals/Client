@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
@@ -190,6 +190,11 @@ const ItemDetails = () => {
                 </button>
               )}
         </div>
+        <div className="d-flex flex-column justify-content-center align-items-center">
+      <Link to={`/api/giftlist/${id}`}>
+      <button className="btn mt-3 btn-warning" >Cancel / Back.</button>
+      </Link>
+      </div>
       </div>
     </div>
   );

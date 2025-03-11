@@ -187,7 +187,14 @@ function WishList() {
                 }}
               >
                 <div style={{ border: "3px solid white", padding: "20px" }}>
-                <li style={{ listStyle: "none" }}>{gift.giftImage}</li>
+                <li style={{ listStyle: "none" }}>
+                  {gift.giftImage && (
+                  <img src={`http://localhost:5001${gift.giftImage}`}
+                  alt={gift.giftName}
+                  style={{ width: "280px", height: "180px", objectFit: "contain", borderRadius: "10px" }}
+                />
+                )}
+                </li>
                 <li style={{ listStyle: "none" }}>{gift.giftName}</li>
                 <li style={{ listStyle: "none" }}>{gift.giftDescription}</li>
                 

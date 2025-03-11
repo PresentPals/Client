@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 
@@ -9,16 +9,16 @@ const AddGift = () => {
   const [giftName, setGiftName] = useState("");
   const [giftDescription, setGiftDescription] = useState("");
   const [giftWebAddress, setGiftWebAddress] = useState("");
-  const [giftImage, setGiftImage] = useState(null);
+  const [file, setFile] = useState(null);
   // const [purchased, setPurchased] = useState(false);
   const [preview, setPreview] = useState(null);
   const [items, setItems] = useState([]);
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setGiftImage(file);
-      setPreview(URL.createObjectURL(file)); // Show image preview
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setPreview(URL.createObjectURL(selectedFile)); // Show image preview
     }
   };
 
@@ -30,27 +30,23 @@ const AddGift = () => {
         return;
       }
       // Create a new item object
-      const newGift = {
-        giftName,
-        giftDescription,
-        giftWebAddress,
-        // giftImage: preview,
-        // purchased: purchased
-      };
-
-      // // Add new item to the setItems array
-      // const addItem = [...items, newGift];
-      // setItems(addItem);
+      const formData = new FormData();
+      formData.append("image", file);
+      formData.append("giftName", giftName);
+      formData.append("giftDescription", giftDescription);
+      formData.append("giftWebAddress", giftWebAddress);
 
       const token = localStorage.getItem("token");
       const response = await axios.post(
         `http://localhost:5001/api/giftlist/${id}/add`,
-        { newGift },
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
-        });
+        }
+      );
 
       if (response.status === 200) {
         alert("Gift added successfully!");
@@ -73,7 +69,7 @@ const AddGift = () => {
     // Clear the form
     setGiftName("");
     setGiftDescription("");
-    setGiftImage(null);
+    setFile(null);
     setGiftWebAddress("");
     // setPurchased(false);
     setPreview(null);
@@ -130,24 +126,11 @@ const AddGift = () => {
             onChange={(e) => setGiftWebAddress(e.target.value)}
           />
         </div>
-        {/* Checkbox for Purchased
-      <div>
-        <label>
-          <input 
-            type="checkbox" 
-            checked={purchased} 
-            onChange={(e) => setPurchased(e.target.checked)} 
-          />
-          Purchased
-        </label>
-      </div> */}
-
         {/* Image Upload */}
         <div>
           <label>Upload Item Image:</label>
           <input type="file" accept="image/*" onChange={handleImageChange} />
         </div>
-
         {/* Image Preview */}
         {preview && (
           <img
@@ -163,6 +146,11 @@ const AddGift = () => {
         >
           Add Item
         </button>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <Link to={`/api/giftlist/${id}`}>
+          <button className="btn mt-3 btn-warning">Cancel / Back.</button>
+        </Link>
       </div>
     </div>
   );
