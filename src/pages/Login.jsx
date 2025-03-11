@@ -104,12 +104,12 @@ function Login() {
                 </div>
 
                 <p className="small mb-1 pb-lg-2 " style={{ color: '#28E3DA' }}>
-                  Don't have an account? 
+                  Don't have an account ? 
                   <br></br>
                   <Link className="fw-bolder" to="/api/auth/signup" style={{ color: '#28E3DA' }}>Sign Up Here.</Link>
                 </p>
 
-                <p className="small mb-5 pb-lg-2 " style={{ color: '#28E3DA' }}>Forgot your username or password? <br></br>
+                <p className="small mb-5 pb-lg-2 " style={{ color: '#28E3DA' }}>Forgot your user name or password? <br></br>
                 Please contact your admin family or friend member.
                 </p>
               </form>
