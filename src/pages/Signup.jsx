@@ -79,13 +79,13 @@ function Signup() {
                     alt="PresentPals logo"
                     style={{
                       width: "300px",
-                      height: "130px",
+                      height: "110px",
                       borderRadius: "10px",
                     }}
                   />
-                  <h2 className="text-uppercase text-center mb-3">
+                  <h3 className="text-uppercase text-center mb-3">
                     Sign Up To Presentpals
-                  </h2>
+                  </h3>
 
                   <form style={{ width: "20rem" }} onSubmit={handleSubmit}>
                     {/* User Name */}
@@ -172,7 +172,7 @@ function Signup() {
                       </button>
                     </div>
 
-                    <p className="text-center text-muted mt-5 mb-0">
+                    <p className="text-center text-muted mt-3 mb-0">
                       Already Have A User Name & Password ?{" "}
                       <Link className="fw-bold text-body" to="/api/auth/login">
                         <u>Login here</u>
