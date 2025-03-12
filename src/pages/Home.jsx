@@ -26,11 +26,12 @@ function Home() {
         <p className="mt-3">
           {" "}
           Have your family & friends always asked what presents do your children
-          want for their birthday ?{" "}
+          want for their birthday ? 
+          </p>
           <p>
             Dont know what to buy your niece or friends child for Christmas ?
           </p>
-        </p>
+        
       </div>
       <div className="flex-box d-flex flex-column justify-content-center align-items-center">
         <a href="/api/auth/signup" className="btn custom-btn mt-5"style={{ color: "black", fontWeight: "bold", important: "true", fontSize: "3rem", padding: "10px 20px", borderRadius: "10px",}}>
