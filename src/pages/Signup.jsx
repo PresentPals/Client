@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "./styles/styles.css";
 
 function Signup() {
-  // State hooks for email and password input values
+  // State hooks for signup input values
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -14,7 +14,7 @@ function Signup() {
 
 
 
-  // Event handler for the form submission (login button)
+  // Event handler for the form submission (signup button)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -23,13 +23,13 @@ function Signup() {
         alert("Please fill out the required fields of User Name, First Name, Last Name, Your Email & Password.");
         return;
       }
-
+      // check the password length
       if (password.length < 8) {
         alert('Password must be at least 8 characters long.');
         window.location.reload(); // Refresh the page if password is invalid
         return;
       }
-
+      // send signup inputs to the backend route
       const response = await axios
         .post("http://localhost:5001/api/auth/signup", {
           userName,
@@ -39,13 +39,15 @@ function Signup() {
           password,
         },
         {
-          validateStatus: (status) => status >= 200 && status < 500, // Treat statuses 200-499 as valid
+          validateStatus: (status) => status >= 200 && status < 500, // Treat status codes 200-499 as valid for the beloww error messaging to users
         });
           const data = response.data;
             if (response.status === 201 && data.message) {
               alert(data.message)
             } else if (response.status === 400 && data.message){
               alert(data.message)
+            } else if (response.status === 500){
+              alert("There is a error / no connection with the server.  Please contact your admin.")
             } else {
               alert("Your signup failed. Please re enter new signup details.")
             }

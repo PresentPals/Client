@@ -6,7 +6,7 @@ import HamburgerMenu from "../components/HamburgerMenu";
 import { ChildStatus } from "../authorise/ChildStatus";
 import { AdminStatus } from "../authorise/AdminStatus";
 import "./styles/styles.css";
-
+// this function will get and display all the nested gift objects assigned to a certain gift list:
 function WishList() {
   const { id } = useParams();
   const [childList, setChildList] = useState([]);
@@ -17,12 +17,12 @@ function WishList() {
   const navigate = useNavigate();
 
   useEffect(() => {
+      // get all the gifts from the certain gift list id.
     const fetchGifts = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log(token);
         if (!token) {
-          console.error("No token found, so the user is not authenticated.");
+          alert("No token found, so the user is not authenticated. Please log back into the aplication.");
           return;
         }
 
@@ -35,8 +35,8 @@ function WishList() {
           }
         );
 
-        console.log("Response data:", response.data);
-
+        // console.log("Response data:", response.data);
+        // response data from backend and assign the gift list object to the child list state, assign the individual nested gift objects to the child items state.
         if (response.data.giftlist) {
           setChildList(response.data.giftlist);
           setChildItems(response.data.giftlist.childGiftList || []);
@@ -47,29 +47,35 @@ function WishList() {
         setChildItems((items) =>
           items.filter((childItems) => childItems.giftName !== "")
         );
+        if (response.status === 500) {
+          alert("There is a error / no connection with the server.  Please contact your admin.")
+        }
+
       } catch (error) {
         console.error("Error fetching the giftlist:", error);
       }
     };
-
+    // this function will get all user data from the db
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-
+        // get user data from the user route
         const response = await axios.get("http://localhost:5001/api/user/", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
-        console.log("API Response:", response.data);
+        // console.log("API Response:", response.data);
+        // user data from the backend assigned to a variable
         const fetchUsers = Array.isArray(response.data.users)
           ? response.data.users
           : [];
+          // users state set with the fetched data
         setUsers(fetchUsers);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
     };
-
+    // this async function just to call await on both the above functions
     const fetchedData = async () => {
       await fetchGifts();
       await fetchUsers();
@@ -78,18 +84,19 @@ function WishList() {
     fetchedData();
   }, [id]);
 
+  // handle the shared user selection and add button
   const handleAddSharedUser = async (e) => {
     e.preventDefault();
-
+    // shared user cannot be blank if trying to add
     if (sharedUserName === "") {
       alert("No Username has been selected to share this wish list !!.");
       return;
     }
-
+    // find the user details where the username selected to be shared equals the username from user data gotten from db.
     const findSelectNames = users.find(
       (user) => user.userName === sharedUserName
     );
-
+    // add the above shared user selected data to a object
     const data = {
       sharedUserName,
       sharedFirstName: findSelectNames.firstname,
@@ -97,6 +104,7 @@ function WishList() {
     };
 
     try {
+      // get the token and send the shared user data to the backend based on the gift list id.
       const token = localStorage.getItem("token");
       const response = await axios.post(
         `http://localhost:5001/api/giftlist/${id}`,
@@ -107,23 +115,20 @@ function WishList() {
           },
         }
       );
-
+      const data = response.data
       if (response.status === 201) {
         alert("Shared user added successfully to this list!");
+      } else if (response.status === 401 && data.message){
+        alert(data.message)
+      } else if (response.status === 403 && data.message){
+        alert(data.message)
+      } else if (response.status === 500) {
+        alert("There is a error / no connection with the server.  Please contact your admin.")
       } else {
         alert("Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("There was an error updating the shared user!", error);
-      if (
-        error.response &&
-        error.response.status === 400 &&
-        error.response.data.message
-      ) {
-        alert(error.response.data.message);
-      } else {
-        alert("Error updating shared user!");
-      }
     }
     // Clear the state:
     setSharedUserName("");
@@ -150,15 +155,17 @@ function WishList() {
         setTimeout(() => {
           navigate("/api/giftlist/"); // Redirect to events page after deletion
         }, 1000); // Wait 1 second to show the message before redirecting
+      } else if (response.status === 500) {
+        alert("There is a error / no connection with the server.  Please contact your admin.")
       }
     } catch (error) {
       console.error("There was an error deleting this giftlist!", error);
       alert("Error deleting giftlist!");
     }
   };
-
-  const parentUsers = users.filter((user) => !user.child); // Users where child = false
-
+  // find users where child = false
+  const parentUsers = users.filter((user) => !user.child); 
+  // get the admin & child statuses from the components
   const isAdmin = AdminStatus();
   const { child } = ChildStatus();
 

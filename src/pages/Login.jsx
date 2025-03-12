@@ -20,20 +20,21 @@ function Login() {
       alert("Please fill out the required fields of User Name & Password.");
       return;
     }
-
+    //check password is valid
     if (password.length < 8) {
       alert('Password must be at least 8 characters long.');
       window.location.reload(); // Refresh the page if password is invalid
       return;
     }
   try {
+    // send inputs to the backend route
     const response = await axios.post("http://localhost:5001/api/auth/login", { userName, password },
       {
-        validateStatus: (status) => status >= 200 && status < 500, // Treat statuses 200-499 as valid for error messaging
+        validateStatus: (status) => status >= 200 && status < 500, // Treat statuses 200-499 as valid for alerting user of the error messaging
       }
     );
       const data = response.data;
-      console.log("Response", data, response)
+      // console.log("Response", data, response)
       if (response.status === 200) {
         localStorage.setItem('token', data.token);
         navigate("/api/user/");
@@ -41,6 +42,8 @@ function Login() {
         alert(data.message)
       } else if (response.status === 401 && data.message){
         alert(data.message)
+      } else if (response.status === 500){
+        alert("There is a error / no connection with the server.  Please contact your admin.")
       } 
       else {
         alert("Your login failed. Please signup or contact your admin member for access.")

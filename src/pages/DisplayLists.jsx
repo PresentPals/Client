@@ -9,7 +9,7 @@ import { ChildStatus } from "../authorise/ChildStatus";
 import { UserLogged } from "../authorise/LoggedUser";
 
 import "./styles/styles.css";
-
+// this function will display all the giftlist event documents in the db
 function DisplayEvents() {
     const [events, setEvents] = useState([]);
 
@@ -18,7 +18,7 @@ function DisplayEvents() {
         try {
             const token = localStorage.getItem("token");
             if (!token) {
-                console.error("No token found, so the user is not authenticated.");
+                alert("No security token found, so the user is not authenticated. Please log back into the application.");
                 return;
             }
     
@@ -28,22 +28,26 @@ function DisplayEvents() {
                 },
             });
     
-            console.log("Response data:", response.data);
+            // console.log("Response data:", response.data);
             if (Array.isArray(response.data.events)) {
                 setEvents(response.data.events);
             } else {
                 setEvents([]);
             }
+            if (response.status === 500) {
+                alert("There is a error / no connection with the server.  Please contact your admin.")
+              }
             } catch (error) {
             console.error("Error fetching events:", error);
             }
         };
         fetchEvents();
     }, []);
-
+    // getting the admin, child and username statuses from the user logged in token
     const isAdmin = AdminStatus();
     const { child }  = ChildStatus();
     const UserLoggedIn = UserLogged();
+    // find all events where the username logged in matches the childUser assigned to a giftlist event.
     const displayChildEvent = events.find((event) => event.childUser === UserLoggedIn);
 
     return (

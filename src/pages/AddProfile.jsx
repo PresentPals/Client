@@ -8,6 +8,7 @@ import HamburgerMenu from "../components/HamburgerMenu";
 import AvatarSelection from "../components/CreateAvatar";
 
 function NewProfile() {
+  // set the new profiles state hooks
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -20,26 +21,27 @@ function NewProfile() {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const navigate = useNavigate();
 
-  //Get the JWT token from localStorage
+  //Get the token from localStorage & decode what accountEmail has been assigned from user that logged in:
   const token = localStorage.getItem("token");
   const decodedToken = token ? jwtDecode(token) : null;
   const accountEmail = decodedToken ? decodedToken.accountEmail : "";
 
-  // Handle form submission
+  // Handle the form submit button
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-
+    e.preventDefault(); // Prevent default form behavior
+    //check the required fields are entered
     if (!userName || !password || !firstname || !lastname) {
       alert(
         "Please fill out the required fields of User Name, Password, First Name, Last Name."
       );
       return;
     }
+    // check password is valid
     if (password.length < 8) {
       alert("Password must be at least 8 characters long.");
       return;
     }
-    // Create a data object to handle file upload
+    // Create a data object to send to the backend
     const data = {
       accountEmail: accountEmail,
       userName: userName,
@@ -54,6 +56,7 @@ function NewProfile() {
     };
 
     try {
+      // send the data object to the backend
       const response = await axios.post(
         "http://localhost:5001/api/user/add",
         data,
@@ -63,29 +66,28 @@ function NewProfile() {
           },
         }
       );
-
-      if (response.status === 201) {
-        alert("Profile updated successfully!");
+      const data = response.data;
+      if (response.status === 201 && data.message) {
+        alert(data.message);
         setTimeout(() => {
           navigate("/api/user"); // Redirect to profiles page after saved
         }, 1000);
+      } else if (response.status === 400 && data.message){
+        alert(data.message)
+      } else if (response.status === 401 && data.message){
+        alert(data.message)
+      } else if (response.status === 403 && data.message){
+        alert(data.message)
+      } else if (response.status === 500){
+        alert("There is a error / no connection with the server.  Please contact your admin.")
       } else {
         alert("Add new profile failed, please try again.");
       }
     } catch (error) {
       console.error("There was an error updating the profile!", error);
-      if (
-        error.response &&
-        error.response.status === 400 &&
-        error.response.data.message
-      ) {
-        alert(error.response.data.message);
-      } else {
-        alert("Error updating profile!");
-      }
     }
   };
-  // Handle selection change in Form.Select
+  // Handle selection change in the child selection dropdown
   const handleSelectChange = (e) => {
     setChild(e.target.value);
   };

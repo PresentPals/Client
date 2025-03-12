@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
-
+// this function will set and send a new gift to the backend based on giftlist id:
 const AddGift = () => {
   const { id } = useParams();
   const [giftName, setGiftName] = useState("");
@@ -13,7 +13,8 @@ const AddGift = () => {
   // const [purchased, setPurchased] = useState(false);
   const [preview, setPreview] = useState(null);
   const [items, setItems] = useState([]);
-
+  
+  // handle the adding & preview of the image
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -21,15 +22,16 @@ const AddGift = () => {
       setPreview(URL.createObjectURL(selectedFile)); // Show image preview
     }
   };
-
+  // handle when the add button is selected
   const handleAddItem = async (e) => {
     e.preventDefault();
     try {
+      // users must enter a gift name
       if (!giftName) {
         alert("Please enter an item name as this is required.");
         return;
       }
-      // Create a new item object
+      // Create a new gift item object from inputs
       const formData = new FormData();
       formData.append("image", file);
       formData.append("giftName", giftName);
@@ -47,31 +49,30 @@ const AddGift = () => {
           },
         }
       );
-
+      const data = response.data;
       if (response.status === 200) {
         alert("Gift added successfully!");
+      } else if (response.status === 404 && data.message){
+        alert(data.message)
+      } else if (response.status === 401 && data.message){
+        alert(data.message)
+      } else if (response.status === 403 && data.message){
+        alert(data.message)
+      } else if (response.status === 500){
+        alert("There is a error / no connection with the server.  Please contact your admin.")
       } else {
         alert("Gift add failed, please try again.");
       }
     } catch (error) {
       console.error("There was an error adding the gift!", error);
-      if (
-        error.response &&
-        error.response.status === 404 &&
-        error.response.data.message
-      ) {
-        alert(error.response.data.message);
-      } else {
-        alert("Error adding gift!");
-      }
+
     }
 
-    // Clear the form
+    // Clear the state hooks
     setGiftName("");
     setGiftDescription("");
     setFile(null);
     setGiftWebAddress("");
-    // setPurchased(false);
     setPreview(null);
   };
 

@@ -7,8 +7,9 @@ import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 import { UserLogged } from "../authorise/LoggedUser";
 import { AdminStatus } from "../authorise/AdminStatus";
-
+// this function will get and display all the details of an individual gift when selected:
 const ItemDetails = () => {
+  // set the state hooks
   const { id, giftId } = useParams();
   const [item, setItem] = useState([]);
   const [purchased, setPurchased] = useState("Yes");
@@ -17,6 +18,7 @@ const ItemDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // this function gets the item from the giiftlist id & gift id using url params:
     const fetchItem = async () => {
       try {
         console.log("giftId:", giftId)
@@ -29,7 +31,7 @@ const ItemDetails = () => {
             },
           }
         );
-
+        // set the Item state with the gift data from the backend
         setItem(response.data.giftItem || []);
         
       } catch (error) {
@@ -48,19 +50,20 @@ const ItemDetails = () => {
 
     fetchItem();
   }, [id]);
-
+  // this function handles the purchase item button
   const handlePurchaseItem = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
+      // apply the user name logged in to a variable from the UserLogged function
       const userLoggedIn = UserLogged();
-
+      // save the choice & logged in username to an object
       const data = {
         purchased: purchased === "Yes" ? true : false,
         purchasedBy: userLoggedIn,
       };
-      console.log("data:", data)
-
+      // console.log("data:", data)
+      // send the data object to the backend route 
       const response = await axios.patch(
         `http://localhost:5001/api/giftlist/${id}/${giftId}`,
         data,
@@ -76,7 +79,7 @@ const ItemDetails = () => {
         alert("Item marked as purchased successfully!");
         window.location.reload(); 
       } else {
-        alert("Trying to purchase failed, please try again.");
+        alert("Trying to purchase failed, please try again or you may need to log back into the application.");
       }
     } catch (error) {
       console.error("There was an error updating the profile!", error);
@@ -104,6 +107,8 @@ const ItemDetails = () => {
         setTimeout(() => {
           navigate(`/api/giftlist/${id}`); // Redirect to the wish list page after deletion
         }, 1000); // Wait 1 second before redirecting
+      } else {
+        alert("Trying to delete item  failed, please try again or you may need to log back into the application.");
       }
     } catch (error) {
       console.error("There was an error deleting the profile!", error);
@@ -111,11 +116,11 @@ const ItemDetails = () => {
     }
   };
 
-  //Handle selection change in select
+  //Handle selection change in the purchasedBy dropdown
   const handleSelectChange = (e) => {
     setPurchased(e.target.value);
   };
-
+  // get the admin status of the user logged in from the AdminStatus authorise component.
   const isAdmin = AdminStatus();
 
   return (

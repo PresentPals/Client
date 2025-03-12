@@ -7,11 +7,11 @@ import "./styles/styles.css";
 import HamburgerMenu from "../components/HamburgerMenu";
 
 const EventForm = () => {
-  //Get the JWT token from localStorage
+  //Get the token from localStorage and decode it to get the accountEmail from the user logged in:
   const token = localStorage.getItem("token");
   const decodedToken = token ? jwtDecode(token) : null;
   const accountEmail = decodedToken ? decodedToken.accountEmail : "";
-
+// set the state hooks for a gift list and users
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
@@ -25,8 +25,11 @@ const EventForm = () => {
   });
 
   useEffect(() => {
-    if (!token) return;
-
+    if (!token) {
+      alert("No security token, please log back into the application.");
+      return;
+    }
+    // fetch the user data from the db for filtering the child users
   const fetchChildUsers = async () => {
     try {
       const response = await axios.get("http://localhost:5001/api/user/", {
@@ -34,32 +37,33 @@ const EventForm = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      console.log("API Response:", response.data);
+      // console.log("API Response:", response.data);
       const fetchedUsers = Array.isArray(response.data.users) ? response.data.users : [];
+      // set the users with fetched data.
       setUsers(fetchedUsers);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      alert("Error fetching chid users from the server:", error);
     }
   };
 
   fetchChildUsers();
   }, [token]);
-
+// set the data from inputs 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-
+// handle when the submit button is selected
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+// alert users the child selection dropdown cannot be blank
     if (formData.childUser === "") {
       alert("A child recipient of this event list must be selected. Please choose an option.");
       return;
     }
-
+    // send the data to the frontend
     try {
       const response = await axios.post(
         "http://localhost:5001/api/giftlist/event",
@@ -70,16 +74,25 @@ const EventForm = () => {
           },
         }
       );
-
+      // alert the responses from backend
+      const data = response.data;
       if (response.status === 201) {
         alert("Event list created successfully!");
         setTimeout(() => {
           navigate("/api/giftlist"); // Redirect to events page after saved
         }, 1000);
+      } else if (response.status === 400 && data.message){
+        alert(data.message)
+      } else if (response.status === 401 && data.message){
+        alert(data.message)
+      } else if (response.status === 403 && data.message){
+        alert(data.message)
+      } else if (response.status === 500){
+        alert("There is a error / no connection with the server.  Please contact your admin.")
       } else {
         alert("Something went wrong. Please try again.");
       }  
-
+      // set the state form  back to default / blank.
       setFormData({
         accountEmail: accountEmail,
         giftListTitle: "",
@@ -91,23 +104,12 @@ const EventForm = () => {
 
     } catch (error) {
       console.error("There was an error updating the event list!", error);
-      if (
-        error.response &&
-        error.response.status === 400 &&
-        error.response.data.message
-      ) {
-        alert(error.response.data.message);
-      } else {
-        alert("Error updating profile!");
-      }
     }
 
     
   };
-
-  // const parentUsers = users.filter((user) => !user.child); // Users where child = false
-  
-  const childUsers = Array.isArray(users) ? users.filter((user) => user.child) : []; // Users where child = true
+  // filter & assign where users child = true
+  const childUsers = Array.isArray(users) ? users.filter((user) => user.child) : []; 
 
   return (
     <div>
