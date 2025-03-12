@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-
+// this function decodes the admin status from the token of the current user logged in
 export const AdminStatus = () => {
     const token = localStorage.getItem("token"); 
     if (!token) return false;

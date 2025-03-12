@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { createAvatar } from '@dicebear/core';
 import { adventurer, bigSmile  } from '@dicebear/collection';
 
-
+// this function is to be used as a component to generate the avatar list and enable users to select and then display the selected avatar to the user. This component then aded into the Add & Edit profile pages:
 const AvatarSelection = ({ onAvatarSelect }) => {
   const [avatars, setAvatars] = useState([]);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   useEffect(() => {
-    // Generate multiple avatars
+    // Get and Generate multiple avatars from the library based on name
     const seedsAd = ['George','Liam','Kingston','Maria', 'Alice', 'Bob', 'Charlie', 'Emery', 'Jameson','Avery', 'Sarah', 'Jude'];
     const generatedAvatarsAd = seedsAd.map(seed => {
       const avatar = createAvatar(adventurer, {
@@ -25,6 +25,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
       });
       return avatar.toString(); // Return the SVG string
     });
+    // combine both arrays of avatars into one big array of an avatarList
     const avatarList = [...generatedAvatarsAd, ...generatedAvatarsBs];
     setAvatars(avatarList);
   }, []);

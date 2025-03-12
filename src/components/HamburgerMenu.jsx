@@ -5,7 +5,7 @@ import { AdminStatus } from '../authorise/AdminStatus';
 // import "../styling/HamburgerMenu.css";
 import "../pages/styles/styles.css";
 
-
+// This function is the hamburger menu dropdown to be placed in most of the pages return areas at the top:
 const HamburgerMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Track if the menu is open or not
 
@@ -32,9 +32,9 @@ const HamburgerMenu = () => {
         aria-expanded={isMenuOpen ? 'true' : 'false'}
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (3 lines) */}
-        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (3 lines) */}
-        <span className="navbar-toggler-icon"></span> {/* This is the hamburger icon (3 lines) */}
+        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (1 line) */}
+        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (1 line) */}
+        <span className="navbar-toggler-icon"></span> {/* This is the hamburger icon (1 line) */}
       </button>
 
       {/* Menu */}

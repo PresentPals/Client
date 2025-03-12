@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-
+// this arrow function just plays an animated video of PresentPals logo
 const LoginVideo = () => {
   return (
     <div className="video-container">

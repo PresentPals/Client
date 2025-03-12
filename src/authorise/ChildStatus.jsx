@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-
+// this function decodes the child status & child id from the token of the current user logged in
 export const ChildStatus = () => {
     const token = localStorage.getItem("token"); 
     if (!token) return { child: false, childId: null };

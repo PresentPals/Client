@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+// this component is designed to be added into the editProfile page and get all the giftLists that have been shared with the same userName they are viewing in the page:
 const DisplaySharedLists = ({ userName }) => {
   const [sharedLists, setSharedLists] = useState([]);
   const [events, setEvents] = useState([]);
@@ -35,13 +35,13 @@ const DisplaySharedLists = ({ userName }) => {
     };
     fetchEvents();
   }, []);
-
+// find the same sharedUsername from the nested usershared object and compare it with the username viewing to display all the event giftlist they are shared with:
   const userSharedEvents = events.filter(
     (event) => event.userShared?.some(shared => shared.sharedUserName === userName)
   );
-  console.log("events",events)
-  console.log("username",userName);
-  console.log("sharedEvents",userSharedEvents);
+  // console.log("events",events)
+  // console.log("username",userName);
+  // console.log("sharedEvents",userSharedEvents);
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">

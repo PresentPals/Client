@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from 'pexels';
 
-
+// this component is getting and playing the video for the Login page. Using an API key from pexels and the pexels library :
 const PexelsVideoPlayer = ({ videoId }) => {
   const [videoData, setVideoData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,8 +18,6 @@ const PexelsVideoPlayer = ({ videoId }) => {
       try {
         const video = await client.videos.show({ id: videoId });
         
-        // Log the video data to inspect its structure
-        console.log(video);
 
         // Extract relevant video details
         const videoTitle = video.title;

@@ -2,7 +2,7 @@ import React from 'react';
 import HamburgerMenu from "../components/HamburgerMenu";
 import LoginVideo from '../components/LoginVideo';
 import "./styles/styles.css";
-
+// this function is to just render all the about details on why and purpose of this application
 function About() {
     return (
         <div>
