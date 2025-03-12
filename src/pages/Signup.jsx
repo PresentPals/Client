@@ -53,7 +53,7 @@ function Signup() {
             }
       } catch (err) {
           console.log(err);
-          alert("An error happened during the signup process. Please try again.");
+          alert("A network error happened during the signup process. Please try again.");
         }
       };
 

@@ -66,18 +66,18 @@ function NewProfile() {
           },
         }
       );
-      const data = response.data;
-      if (response.status === 201 && data.message) {
-        alert(data.message);
+      const resData = response.data;
+      if (response.status === 201 && resData.message) {
+        alert(resData.message);
         setTimeout(() => {
           navigate("/api/user"); // Redirect to profiles page after saved
         }, 1000);
-      } else if (response.status === 400 && data.message){
-        alert(data.message)
-      } else if (response.status === 401 && data.message){
-        alert(data.message)
-      } else if (response.status === 403 && data.message){
-        alert(data.message)
+      } else if (response.status === 400 && resData && resData.message){
+        alert(resData.message)
+      } else if (response.status === 401 && resData && resData.message){
+        alert(resData.message)
+      } else if (response.status === 403 && resData && resData.message){
+        alert(resData.message)
       } else if (response.status === 500){
         alert("There is a error / no connection with the server.  Please contact your admin.")
       } else {

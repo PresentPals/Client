@@ -63,7 +63,7 @@ const HamburgerMenu = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/api/auth/login" onClick={() => { handleLogout();}}>
+            <Link className="nav-link" to="/PresentPals/" onClick={() => { handleLogout();}}>
               Log Out
             </Link>
           </li>

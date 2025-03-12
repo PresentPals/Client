@@ -50,7 +50,7 @@ function Login() {
       }
   } catch (err) {
     console.log(err);
-    alert("An error happened during the login process. This could be caused by server connection issues.");
+    alert("An error happened during the login process. This could be caused by server connection issues. Please try again later");
   }
   };
 

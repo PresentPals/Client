@@ -15,7 +15,7 @@ import AddGift from './pages/ItemAdd';
 import ItemDetails from './pages/ItemDetails';
 import DisplayEvents from './pages/DisplayLists';
 import WishList from './pages/ItemisedList';
-
+import Home from './pages/Home';
 
 
 function App() {
@@ -34,6 +34,7 @@ function App() {
         <Route path='/api/giftlist/:id/add' element={<AddGift />}/>
         <Route path='/api/giftlist/' element={<DisplayEvents />}/>
         <Route path='/api/giftlist/:id' element={<WishList />}/>
+        <Route path='/PresentPals/' element={<Home />}/>
         
 
       </Routes>

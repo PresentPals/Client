@@ -115,13 +115,13 @@ function WishList() {
           },
         }
       );
-      const data = response.data
+      const resData = response.data
       if (response.status === 201) {
         alert("Shared user added successfully to this list!");
-      } else if (response.status === 401 && data.message){
-        alert(data.message)
-      } else if (response.status === 403 && data.message){
-        alert(data.message)
+      } else if (response.status === 401 && resData && resData.message){
+        alert(resData.message)
+      } else if (response.status === 403 && resData && resData.message){
+        alert(resData.message)
       } else if (response.status === 500) {
         alert("There is a error / no connection with the server.  Please contact your admin.")
       } else {
