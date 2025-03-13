@@ -22,7 +22,7 @@ function DisplayEvents() {
                 return;
             }
     
-            const response = await axios.get("https://server-5d6r.onrender.com/api/giftlist/", {
+            const response = await axios.get("https://server-9w3v.onrender.com/api/giftlist/", {
                 headers: {
                 Authorization: `Bearer ${token}`,
                 },

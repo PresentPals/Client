@@ -58,7 +58,7 @@ function NewProfile() {
     try {
       // send the data object to the backend
       const response = await axios.post(
-        "https://server-5d6r.onrender.com/api/user/add",
+        "https://server-9w3v.onrender.com/api/user/add",
         data,
         {
           headers: {
