@@ -37,7 +37,7 @@ function EditProfile() {
       try {
         // Fetch user data based on the id from URL
         const response = await axios.get(
-          `https://server-5d6r.onrender.com:5001/api/user/${id}`,
+          `https://server-5d6r.onrender.com/api/user/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ function EditProfile() {
       // get the stored local token & send the data object to the backend route based on id fom the params
       const token = localStorage.getItem("token");
       const response = await axios.patch(
-        `https://server-5d6r.onrender.com:5001/api/user/${id}`,
+        `https://server-5d6r.onrender.com/api/user/${id}`,
         profileData,
         {
           headers: {
@@ -143,7 +143,7 @@ function EditProfile() {
       // Send a DELETE request to remove the profile
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `https://server-5d6r.onrender.com:5001/api/user/${id}`,
+        `https://server-5d6r.onrender.com/api/user/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

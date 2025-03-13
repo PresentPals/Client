@@ -40,7 +40,7 @@ const AddGift = () => {
 
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `https://server-5d6r.onrender.com:5001/api/giftlist/${id}/add`,
+        `https://server-5d6r.onrender.com/api/giftlist/${id}/add`,
         formData,
         {
           headers: {

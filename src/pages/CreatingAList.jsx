@@ -32,7 +32,7 @@ const EventForm = () => {
     // fetch the user data from the db for filtering the child users
   const fetchChildUsers = async () => {
     try {
-      const response = await axios.get("https://server-5d6r.onrender.com:5001/api/user/", {
+      const response = await axios.get("https://server-5d6r.onrender.com/api/user/", {
 
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -66,7 +66,7 @@ const EventForm = () => {
     // send the data to the frontend
     try {
       const response = await axios.post(
-        "https://server-5d6r.onrender.com:5001/api/giftlist/event",
+        "https://server-5d6r.onrender.com/api/giftlist/event",
         formData,
         {
           headers: {
