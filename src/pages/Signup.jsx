@@ -31,7 +31,7 @@ function Signup() {
       }
       // send signup inputs to the backend route
       const response = await axios
-        .post("http://localhost:5001/api/auth/signup", {
+        .post("https://server-5d6r.onrender.com:5001/api/auth/signup", {
           userName,
           firstname,
           lastname,

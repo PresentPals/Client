@@ -25,7 +25,7 @@ function DisplayProfiles() {
           return;
         }
         //get user data from the user route
-        const response = await axios.get("http://localhost:5001/api/user/", {
+        const response = await axios.get("https://server-5d6r.onrender.com:5001/api/user/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
