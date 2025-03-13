@@ -178,6 +178,12 @@ function Signup() {
                         <u>Login here</u>
                       </Link>
                     </p>
+                    <p className="text-center text-muted mt-3 mb-0">
+                      Or Back To Home Page: {" "}
+                      <Link className="fw-bold text-body" to="/PresentPals/">
+                        <u>Here</u>
+                      </Link>
+                    </p>
                   </form>
                 </div>
               </div>
