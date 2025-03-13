@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import 'cross-fetch/polyfill'; // This ensures fetch is globally available
-import { createClient } from 'pexels';
 
-// this component is getting and playing the video for the Login page. Using an API key from pexels and the pexels library :
+
 const PexelsVideoPlayer = ({ videoId }) => {
   const [videoData, setVideoData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,24 +11,32 @@ const PexelsVideoPlayer = ({ videoId }) => {
   useEffect(() => {
     if (!videoId) return;
 
-    const client = createClient(API_KEY);
-
     const fetchVideo = async () => {
       try {
-        const video = await client.videos.show({ id: videoId });
-        
+        const response = await fetch(`https://api.pexels.com/videos/videos/${videoId}`, {
+          headers: {
+            Authorization: API_KEY,
+          },
+        });
 
-        // Extract relevant video details
-        const videoTitle = video.title;
-        const videoDuration = video.duration;
-        const videoUrl = video.url;
-        const videoFileLink = video.video_files[0]?.link;  // Get the first available video quality
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-        // Update the state with video data
+        const video = await response.json();
+
+        // Extract video details
+        const videoTitle = video?.title || "Pexels Video";
+        const videoUrl = video?.url;
+        const videoFileLink = video?.video_files?.find(file => file.quality === 'hd')?.link || video?.video_files?.[0]?.link;
+
+        if (!videoFileLink) {
+          throw new Error('No video file available');
+        }
+
         setVideoData({
           title: videoTitle,
           url: videoUrl,
-          duration: videoDuration,
           videoFile: videoFileLink,
         });
 
@@ -43,38 +49,23 @@ const PexelsVideoPlayer = ({ videoId }) => {
     };
 
     fetchVideo();
-  }, [videoId]);  // Re-run effect when videoId changes
+  }, [videoId]);
 
-  // Show loading state while the video data is being fetched
-  if (loading) {
-    return <div>Loading video...</div>;
-  }
+  if (loading) return <div>Loading video...</div>;
+  if (error) return <div>{error}</div>;
 
-  // Show error message if fetching fails
-  if (error) {
-    return <div>{error}</div>;
-  }
+  return videoData ? (
+    <div className='mt-5'>
 
-  // Render the video player with fetched data
-  if (videoData) {
-    return (
-      <div>
-        <h3>{videoData.title}</h3>
-        <p><a href={videoData.url} target="_blank" rel="noopener noreferrer"></a></p>
-        
-        {/* Render video player */}
-        <video controls autoPlay muted loop width="100%">
-          <source src={videoData.videoFile} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <br></br>
-        
-        <footer> &copy;2025. Video from Pexels.</footer>
-      </div>
-    );
-  }
+      {/* Render video player */}
+      <video controls autoPlay muted loop width="100%">
+        <source src={videoData.videoFile} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-  return null;  // Return nothing if no video data is available yet
+      <footer> &copy;2025. Video from Pexels.</footer>
+    </div>
+  ) : null;
 };
 
 export default PexelsVideoPlayer;
