@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import 'cross-fetch/polyfill'; // This ensures fetch is globally available
 import { createClient } from 'pexels';
 
 // this component is getting and playing the video for the Login page. Using an API key from pexels and the pexels library :
