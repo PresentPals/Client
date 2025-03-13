@@ -122,7 +122,7 @@ function Login() {
           {/* Video Section */}
           <div className="col-sm-6 px-0 d-none d-sm-block">
             <div alt="Login video"
-              className="w-100 vh-100"
+              className="w-50 vh-100"
               style={{ objectFit: 'cover', objectPosition: 'left' }}>
             <PexelsVideoPlayer videoId="6099405" />
             </div>
