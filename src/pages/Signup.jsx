@@ -180,7 +180,7 @@ function Signup() {
                     </p>
                     <p className="text-center text-muted mt-3 mb-0">
                       Or Back To Home Page: {" "}
-                      <Link className="fw-bold text-body" to="/PresentPals/">
+                      <Link className="fw-bold text-body" to="/">
                         <u>Here</u>
                       </Link>
                     </p>
