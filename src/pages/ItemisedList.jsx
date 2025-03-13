@@ -27,7 +27,7 @@ function WishList() {
         }
 
         const response = await axios.get(
-          `http://localhost:5001/api/giftlist/${id}`,
+          `https://server-5d6r.onrender.com:5001/api/giftlist/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ function WishList() {
       try {
         const token = localStorage.getItem("token");
         // get user data from the user route
-        const response = await axios.get("http://localhost:5001/api/user/", {
+        const response = await axios.get("https://server-5d6r.onrender.com:5001/api/user/", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -107,7 +107,7 @@ function WishList() {
       // get the token and send the shared user data to the backend based on the gift list id.
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        `http://localhost:5001/api/giftlist/${id}`,
+        `https://server-5d6r.onrender.com:5001/api/giftlist/${id}`,
         { data },
         {
           headers: {
@@ -141,7 +141,7 @@ function WishList() {
       // Send a DELETE request to remove the gift list
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5001/api/giftlist/${id}`,
+        `https://server-5d6r.onrender.com:5001/api/giftlist/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -197,7 +197,7 @@ function WishList() {
                   <li style={{ listStyle: "none" }}>
                     {gift.giftImage && (
                       <img
-                        src={`http://localhost:5001${gift.giftImage}`}
+                        src={`https://server-5d6r.onrender.com:5001${gift.giftImage}`}
                         alt={gift.giftName}
                         style={{
                           width: "280px",

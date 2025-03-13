@@ -65,7 +65,7 @@ const ItemDetails = () => {
       // console.log("data:", data)
       // send the data object to the backend route 
       const response = await axios.patch(
-        `http://localhost:5001/api/giftlist/${id}/${giftId}`,
+        `https://server-5d6r.onrender.com:5001/api/giftlist/${id}/${giftId}`,
         data,
         {
           headers: {
@@ -93,7 +93,7 @@ const ItemDetails = () => {
       // Send a DELETE request to remove the item
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `http://localhost:5001/api/giftlist/${id}/${giftId}`,
+        `https://server-5d6r.onrender.com:5001/api/giftlist/${id}/${giftId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -146,7 +146,7 @@ const ItemDetails = () => {
           <div className="w-full max-w-3xl bg-gray-800 p-6 rounded-lg">
             <div className="d-flex flex-wrap justify-content-center align-items-center">
               <img
-                src={`http://localhost:5001${item.giftImage}`}
+                src={`https://server-5d6r.onrender.com:5001${item.giftImage}`}
                 alt={"No Image has been added."}
                 style={{
                   width: "280px",

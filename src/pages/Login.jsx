@@ -28,7 +28,7 @@ function Login() {
     }
   try {
     // send inputs to the backend route
-    const response = await axios.post("http://localhost:5001/api/auth/login", { userName, password },
+    const response = await axios.post("https://server-5d6r.onrender.com:5001/api/auth/login", { userName, password },
       {
         validateStatus: (status) => status >= 200 && status < 500, // Treat statuses 200-499 as valid for alerting user of the error messaging
       }

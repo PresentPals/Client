@@ -16,7 +16,7 @@ const DisplaySharedLists = ({ userName }) => {
         }
 
         const response = await axios.get(
-          "http://localhost:5001/api/giftlist/",
+          "https://server-5d6r.onrender.com:5001/api/giftlist/",
           {
             headers: {
               Authorization: `Bearer ${token}`,
