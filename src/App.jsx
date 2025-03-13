@@ -34,7 +34,7 @@ function App() {
         <Route path='/api/giftlist/:id/add' element={<AddGift />}/>
         <Route path='/api/giftlist/' element={<DisplayEvents />}/>
         <Route path='/api/giftlist/:id' element={<WishList />}/>
-        <Route path='/PresentPals/' element={<Home />}/>
+        <Route path='/' element={<Home />}/>
         
 
       </Routes>
