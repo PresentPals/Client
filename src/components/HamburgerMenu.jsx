@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import "../themes/HambugerMenu.css";
+import { AdminStatus } from '../authorise/AdminStatus';
+// import "../styling/HamburgerMenu.css";
+import "../pages/styles/styles.css";
 
+// This function is the hamburger menu dropdown to be placed in most of the pages return areas at the top:
 const HamburgerMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Track if the menu is open or not
 
@@ -11,8 +14,13 @@ const HamburgerMenu = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
+ 
+    localStorage.removeItem("token");
+
+    console.log("Token removed:", !localStorage.getItem("token"));
   }
+
+  const isAdmin = AdminStatus();
 
   return (
     <div>
@@ -24,9 +32,9 @@ const HamburgerMenu = () => {
         aria-expanded={isMenuOpen ? 'true' : 'false'}
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (3 lines) */}
-        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (3 lines) */}
-        <span className="navbar-toggler-icon"></span> {/* This is the hamburger icon (3 lines) */}
+        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (1 line) */}
+        <span className="navbar-toggler-icon"></span><br></br> {/* This is the hamburger icon (1 line) */}
+        <span className="navbar-toggler-icon"></span> {/* This is the hamburger icon (1 line) */}
       </button>
 
       {/* Menu */}
@@ -37,23 +45,25 @@ const HamburgerMenu = () => {
               About
             </Link>
           </li>
+          { isAdmin && (
           <li className="nav-item">
-            <Link className="nav-link" to="/api/giftlist/" onClick={() => setIsMenuOpen(false)}>
+            <Link className="nav-link" to="/api/giftlist/event" onClick={() => setIsMenuOpen(false)}>
             Create A List
             </Link>
           </li>
+          )}
           <li className="nav-item">
-            <Link className="nav-link" to="/api/giftlist" onClick={() => setIsMenuOpen(false)}>
+            <Link className="nav-link" to="/api/giftlist/" onClick={() => setIsMenuOpen(false)}>
             Gift Lists
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/api/user" onClick={() => setIsMenuOpen(false)}>
-              Profile
+            <Link className="nav-link" to="/api/user/" onClick={() => setIsMenuOpen(false)}>
+              Profiles
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/api/login" onClick={() => {setIsMenuOpen(false); handleLogout();}}>
+            <Link className="nav-link" to="/PresentPals/" onClick={() => { handleLogout();}}>
               Log Out
             </Link>
           </li>

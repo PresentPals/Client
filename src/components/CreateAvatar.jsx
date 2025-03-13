@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { createAvatar } from '@dicebear/core';
 import { adventurer, bigSmile  } from '@dicebear/collection';
 
-
+// this function is to be used as a component to generate the avatar list and enable users to select and then display the selected avatar to the user. This component then aded into the Add & Edit profile pages:
 const AvatarSelection = ({ onAvatarSelect }) => {
   const [avatars, setAvatars] = useState([]);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
 
   useEffect(() => {
-    // Generate multiple avatars
-    const seedsAd = ['George','Liam','Kingston','Maria', 'Alice', 'Bob', 'Charlie', 'Emery', 'Jameson','Avery', 'Sarah'];
+    // Get and Generate multiple avatars from the library based on name
+    const seedsAd = ['George','Liam','Kingston','Maria', 'Alice', 'Bob', 'Charlie', 'Emery', 'Jameson','Avery', 'Sarah', 'Jude'];
     const generatedAvatarsAd = seedsAd.map(seed => {
       const avatar = createAvatar(adventurer, {
         seed,
@@ -17,7 +17,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
       });
       return avatar.toString(); // Return the SVG string
     });
-    const seedsBs = ['Andrea', 'Sawyer', 'Maria', 'Andrea', 'Avery', 'Caleb','Sarah'];
+    const seedsBs = ['Kingston', 'Sawyer', 'Maria', 'Andrea', 'Avery', 'Caleb','Sarah'];
     const generatedAvatarsBs = seedsBs.map(seed => {
       const avatar = createAvatar(bigSmile, {
         seed,
@@ -25,6 +25,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
       });
       return avatar.toString(); // Return the SVG string
     });
+    // combine both arrays of avatars into one big array of an avatarList
     const avatarList = [...generatedAvatarsAd, ...generatedAvatarsBs];
     setAvatars(avatarList);
   }, []);
@@ -35,7 +36,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
   };
 
   return (
-    <div className="avatar-selection">
+    <div className="d-flex flex-column justify-content-center align-items-center">
       <h3>Select Your Avatar</h3>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
         {avatars.map((avatar, index) => (
@@ -54,7 +55,7 @@ const AvatarSelection = ({ onAvatarSelect }) => {
       </div>
 
       {selectedAvatar && (
-        <div className="selected-avatar">
+        <div className="d-flex flex-column justify-content-center align-items-center">
           <h3>Your selected avatar:</h3>
           <div dangerouslySetInnerHTML={{ __html: selectedAvatar }} />
         </div>
