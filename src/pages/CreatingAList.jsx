@@ -103,7 +103,7 @@ const EventForm = () => {
       });
 
     } catch (error) {
-      console.error("There was an error updating the event list!", error);
+      alert("There was an error updating the event list!", error);
     }
 
     

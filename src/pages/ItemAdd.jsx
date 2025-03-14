@@ -64,7 +64,7 @@ const AddGift = () => {
         alert("Gift add failed, please try again.");
       }
     } catch (error) {
-      console.error("There was an error adding the gift!", error);
+      alert("There was an error adding the gift!", error);
 
     }
 

@@ -65,7 +65,7 @@ function EditProfile() {
           alert("Failed to fetch profile data. There could an issue with the server, contact your admin.");
         }
       } catch (error) {
-        console.error("Error fetching profiles:", error);
+        alert("Error fetching profiles:", error);
       } finally {
         setLoading(false); // Set loading to false after data is fetched or if there's an error
       }

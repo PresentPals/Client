@@ -49,7 +49,7 @@ function DisplayProfiles() {
           );
         }
       } catch (error) {
-        console.error("Error fetching profiles:", error);
+        alert("Error fetching profiles:", error);
       }
     };
     fetchProfiles();

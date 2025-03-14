@@ -82,7 +82,7 @@ const ItemDetails = () => {
         alert("Trying to purchase failed, please try again or you may need to log back into the application.");
       }
     } catch (error) {
-      console.error("There was an error updating the profile!", error);
+      alert("There was an error updating the profile!", error);
     }
   };
 

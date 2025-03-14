@@ -78,7 +78,7 @@ function WishList() {
         // users state set with the fetched data
         setUsers(fetchUsers);
       } catch (error) {
-        console.error("Error fetching users:", error);
+        alert("Error fetching users:", error);
       }
     };
     // this async function just to call await on both the above functions
@@ -136,7 +136,7 @@ function WishList() {
         alert("Something went wrong. Please try again.");
       }
     } catch (error) {
-      console.error("There was an error updating the shared user!", error);
+      alert("There was an error updating the shared user!", error);
     }
     // Clear the state:
     setSharedUserName("");
@@ -170,7 +170,7 @@ function WishList() {
       }
     } catch (error) {
       console.error("There was an error deleting this giftlist!", error);
-      alert("Error deleting giftlist!");
+      alert("Error deleting giftlist!", error);
     }
   };
   // find users where child = false
