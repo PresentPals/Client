@@ -45,8 +45,19 @@ function DisplayEvents() {
           );
         }
       } catch (error) {
-        console.error("Error fetching events:", error);
-      }
+        if (error.response) {
+          
+          alert(error.response.data.message || "Something went wrong. Please try again. ");
+        } else if (error.request) {
+          
+          alert("No response from the server. Please check your internet connection.");
+        } else {
+          
+          alert("An unexpected error occurred.");
+        }
+    
+      console.error("There was an error getting the gilft list data!", error);
+    }
     };
     fetchEvents();
   }, []);
