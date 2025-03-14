@@ -4,10 +4,6 @@
 
 <b>Developed by Darren Small, Tania Magro , and Venita Kissell</b>
 
-# PresentPals Application Is Deployed Live & Available To Access/Use Via This URL:
-
-# [PresentPals App](https://presentpals.netlify.app/)
-
 ## Repositories
 ![GitHub](./public/images/GitHub.png)
 
@@ -17,8 +13,12 @@
 
 [GitHub_Server](https://github.com/PresentPals/server)
 
-## Frontend Installation Instructions for running on localhost
-1.  Clone the Frontend Repository:
+## Trello Board
+[Trello_Board](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
+
+
+## Frontend Installation Instructions
+1.  Clone the Front-End Repository:
 
 Use the following command to clone the repository;
 
@@ -31,47 +31,42 @@ Go to the project directory and install the required npm dependencies;
 
     npm install
 
-3.  Start the Application;
+3.  Create .env file;
 
-Use this command to start the application running;
+In the root directory of the project, create a .env file and add the following;
+
+    DATABASE_URL="YOUR URL HERE"
+
+4.  Start the Application;
 
     npm start
 
-4.  Access the Application;
+5.  Access the Application;
 
-    Open your browser and go to localhost:5173/
+    Open your browser and go to localhost:5173
 
-5.  Verify your backend Server is running;
+6.  Verify your backend Server is running;
 
-    Ensure the backend server is running on a port number using the instructions provided below, before trying to signup or login.
-
-6. Please Follow the PresentPals Application Instructions below for acces and use.
+    Ensure the backend server is running on port 8080 using the instructions provided below.
 
 
-## Backend Installation Instructions for running on localhost
+## Backend Installation Instructions
 
-1.   Clone the Backend Repository:
+1.  Create a .env File;
 
-Use the following command to clone the repository;
-
-    git clone git@github.com:PresentPals/server.git
-
-2. Create a .env File;
-
-In the root directory of the project, create a .env file and add the following configuration for access to your own mongodb database setup:
+In the root directory of the project, create a .env file and add the following configuration:
 
     PORT=5001
-    DATABASE_URL="YOUR MONGDB CLUSTER ACCESS URL HERE"
-    JWT_SECRET="YOUR OWN JWT SECRET KEY HERE"
+    DATABASE_URL="YOUR URL HERE"
+    JWT_KEY="YOUR JWT KEY HERE"
 
-3.  Start MongoDB (WSL Users);
+2.  Start MongoDB (WSL Users);
 
 If you are using Windows Subsystem for Linux (WSL), start MongoDB with:
 
-    sudo service mongod start
+    sudo systemctl start mongod
 
-
-4.  Start the Server:
+3.  Start the Server in Development Mode;
 
 Install the packages needed for the app
 
@@ -79,53 +74,20 @@ Install the packages needed for the app
 
 Use the following command to start the server:
 
-    npm start
+    npm run dev
 
-The server should indicate it is running on a port number.
+4.  Seed Data to the Database;
 
-## PresentPals Application Instructions For Use:
+Populate the database with initial data by running:
 
-1. Home: Go to the Presentpals App Home page & select the Sign Up option:
+    npm run seed
 
-    [Home page](https://presentpals.netlify.app/)
+5.  Login Details;
 
-    ![Home](./public/images/Home_page.png)
+For user login, use the following credentials:
 
-2. Sign Up: On the sign up page register your details:
-
-    Note: the first person to register a email address will by default become the family / friends group administrator.
-
-    ![signup](./public/images/signup.png)
-
-3. Log In: Go to the login page & login to the application, using your username & password.
-
-    ![login](./public/images/login.png)
-
-4. Profiles: Once logged in, this lands you on the Profiles page.
-
-    Note: only Admin users can add new profiles.
-
-    ![profiles](./public/images/profiles_page.png)
-
-    - Select the 'Add New Profile' button to add your family or friend group members.
-    - Select your own profile to edit / add more details.
-
-    4a - Add Profile: Add your family / friend members. Must identify each member as a child (by default selection is Yes) or as an adult (select No). Every member MUST have a User Name.
-        
-    ![profile_add](./public/images/add_profile.png)
-
-NOW ALL MEMBERS CAN ACCESS / LOGIN TO THE APPLICATION USING THERE USER NAME & PASSWORD (assigned by the admin user.).
-
-    Note: Access:
-
-        - Adult members can: edit profiles,  
-
-
-## Trello Board
-[Trello_Board](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
-
-
-
+    USERNAME: user
+    PASSWORD: user
 
 ## Client Libraries & Dependencies
 
