@@ -130,7 +130,7 @@ function DisplayEvents() {
           className="scrolling-text"
           style={{ color: "#28e3da", fontWeight: "bold", important: "true" }}
         >
-          Select to view a giftlist event. Children can only add items, Adults can view item details & Admin can do all.
+          Select to view a giftlist event. Children can only add items, Adults can only view item details & Admin can do all.
         </p>
       </div>
     </div>

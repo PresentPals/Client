@@ -2,10 +2,19 @@
 
 # Part B - PresentPals Gift List Application
 
-<b>Developed by Darren Small, Tania Magro , and Venita Kissell</b>
+<b>Developed by Darren Small, Tania Magro, and Venita Kissell</b>
+
+# PresentPals Application Is Deployed Live & Available To Access/Use Via This URL:
+ 
+ # [PresentPals App](https://presentpals.netlify.app/)
+    
+    login (admin): darrens 
+    password: 12345678
+ 
 
 ## Repositories
-![GitHub](./public/images/GitHub.png)
+
+[GitHub](./public/images/GitHub.png)
 
 [GitHub_Repository](https://github.com/PresentPals)
 
@@ -14,16 +23,21 @@
 [GitHub_Server](https://github.com/PresentPals/server)
 
 ## Trello Board
-[Trello_Board](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
+
+[Trello_Board-PresentPals](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
+
+## PowerPoint Presentation
+
+[PowerPoint_PresentPals](https://docs.google.com/presentation/d/1dLyonbVZAjINj7It0iXM9a7SfzUsUC4Jfmvk89zEy3k/edit?usp=sharing)
 
 
-## Frontend Installation Instructions
-1.  Clone the Front-End Repository:
+## Frontend Installation Instructions for running on localhost
 
-Use the following command to clone the repository;
+ 1.  Clone the Frontend Repository:
+ 
+ Use the following command to clone the repository;
 
     git clone git@github.com:PresentPals/Client.git
-
 
 2.  Install the Dependencies;
 
@@ -31,63 +45,144 @@ Go to the project directory and install the required npm dependencies;
 
     npm install
 
-3.  Create .env file;
+3.  Start the Application;
 
-In the root directory of the project, create a .env file and add the following;
-
-    DATABASE_URL="YOUR URL HERE"
-
-4.  Start the Application;
+Use this command to start the application running;
 
     npm start
 
-5.  Access the Application;
+4.  Access the Application;
 
-    Open your browser and go to localhost:5173
+    Open your browser and go to localhost:5173/
 
-6.  Verify your backend Server is running;
+5.  Verify your backend Server is running;
 
-    Ensure the backend server is running on port 8080 using the instructions provided below.
+Ensure the backend server is running on a port number using the instructions provided below, before trying to signup or login.
+
+6.  Please Follow the PresentPals Application Instructions below for access and use.
+
 
 
 ## Backend Installation Instructions
 
-1.  Create a .env File;
+1.  Clone the Backend Repository:
 
-In the root directory of the project, create a .env file and add the following configuration:
+Use the following command to clone the repository;
+ 
+     git clone git@github.com:PresentPals/server.git
+
+2.  In the root directory of the project, create a .env file and add the following configuration:
 
     PORT=5001
-    DATABASE_URL="YOUR URL HERE"
-    JWT_KEY="YOUR JWT KEY HERE"
+    DATABASE_URL="YOUR MONGDB CLUSTER ACCESS URL HERE"
+    JWT_SECRET="YOUR OWN JWT SECRET KEY HERE"
 
-2.  Start MongoDB (WSL Users);
+3.  Start MongoDB (WSL Users);
 
 If you are using Windows Subsystem for Linux (WSL), start MongoDB with:
 
-    sudo systemctl start mongod
+    sudo service mongod start
 
-3.  Start the Server in Development Mode;
+4.  Start the Server:
 
 Install the packages needed for the app
 
     npm install
 
-Use the following command to start the server:
+5.  Use the following command to start the server:
 
-    npm run dev
+    npm start
 
-4.  Seed Data to the Database;
+The server should indicate it is running on a port number.
+ 
 
-Populate the database with initial data by running:
+## PresentPals Application Instructions For Use:
 
-    npm run seed
+ To login and test our app with a full range of stored data use the login and password below;
+ 
+ ### login (admin): darrens 
+ ### password: 12345678
+ 
+1. Home: Go to the Presentpals App Home page & select the Sign Up option:    
 
-5.  Login Details;
+    [Home page](https://presentpals.netlify.app/)
 
-For user login, use the following credentials:
+2. Sign Up: On the sign up page register your details:
+ 
+     Note: the first person to register an email address will by default become the family/friends group administrator.
+ 
+     ![signup](./public/images/signup.png)
+ 
+3. Log In: Go to the login page & login to the application, using your username & password.
+ 
+     ![login](./public/images/login.png)
+ 
+4. Profiles: Once logged in, this lands you on the Profiles page.
+ 
+    Note: Only Admin users can add new profiles.
+ 
+    ![profiles](./public/images/profiles_page.png)
 
-    USERNAME: user
-    PASSWORD: user
+- Select your own profile to edit / add more details, or change your avatar image.
+
+    ![profile_add](./public/images/add_profile.png)
+
+- Select the 'ADD NEW PROFILE' button to add your family or friend group members.
+
+    ![add_new_profile](./public/images/add_new_profile.png)
+
+- Add Profile: Add your family / friend members. 
+Must identify each member as a child (by default selection is <b>Yes</b>) or as an adult 
+(select <b>No</b>). 
+
+** Note: Every member MUST have a User Name.
+
+- Enter your New Profile details, select Save Profile
+
+- Once you have created the new User you need to create the Event  
+
+5. Create an Event (Gift List)
+
+- Once new user has been created, Admin creates the EVENT from the drop down menu box, select 'CREATE EVENT' and allocate to the correct child.
+
+![create_event](./public/images/create_event.png)
+
+Create the EVENT & assign a child user. Once this is created, the Child User can ONLY view the events they are assigned to & then add to their Wish List Event from their own login.
+
+![event_creation](./public/images/event_creation.png)
+
+Once you have created your event, you can allocation the child recipeient of the Event List from the drop down menu.
+
+
+6. Once Users have been created, and Events have been created, the users can access their profiles directly from their logins.
+
+ NOW ALL MEMBERS CAN ACCESS / LOGIN TO THE APPLICATION USING THERE OWN USER NAME & PASSWORD (assigned by the admin user.).
+ 
+   
+7. Adding Items to your Gift List
+
+![add_to_gift_list](./public/images/add_to_gift_list.png)
+
+Add into your list with a description, an image, and a website.
+
+![add_item](./public/images/add_item.png)
+
+8. Once the child has populated the Gift List, Admin can share that gift list with another family member / friend for them to mark a gift off the list as purchased.
+
+![share_wishlist](./public/images/share_wishlist.png)
+
+![share_user_list](./public/images/shared_user_list.png)
+
+8a. An adult marking a gift item as they are purchasing:
+
+![purchase1](./public/images/mark_purchase_1.png)
+![purchase2](./public/images/mark_purchase_2.png)
+![purchase3](./public/images/mark_purchase_3.png)
+
+9. Admin is able to delete Event Wish Lists and Profiles
+![delete_wishlist](./public/images/delete_wishlist.png)
+
+
 
 ## Client Libraries & Dependencies
 
@@ -107,9 +202,11 @@ For user login, use the following credentials:
 
 <b>vitejs/plugin-react (4.3.4)</b> : This package is a plug in specifically designed for Vite to provde support for React applications. It enables JSX syntax and other optimisations.
 
-<b>globals (15.14.0)</b> : This refers to a library that provides global variables definitions for different JavaScript environments. It correctly identifies and manages global variables depending on the environment which your code is running ie Node.js or JavaScript.
+<b>dicebear/collection: 9.2.2, dicebear/core: 9.2.2 </b> : This library is used for fetching the avatars to be used / applied to a members profile.
 
+<b>Pexels API </b> : In the components folder / video.jsx file, we are fetching from this url : `https://api.pexels.com/videos/videos/${videoId}`,  a specific video by id from the pexels API. To access this we are using a free API key from pexels br registering the presentpals app with them.
 
+<b>React-bootstrap</b> : We added this library but did not end up using this.
 
 ### Backend
 
@@ -127,7 +224,7 @@ For user login, use the following credentials:
 
 <b>nodemon:</b> Is a utility that is a development tool that helps Node.js applications, it automatically monitors project files for changes and restarts the server when code changes are detected. This ensures that the application reflects the latest updates without needing manual server restarts.
 
-<b>jest:</b> A testing framework designed to ensure code reliability and correctness. It offers a suite of utilities for writing unit and integration tests, verifying that the application functions as expected.
+<b>multer:</b> Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. We used this for saving and fetching the images of items saved to a gift list.
 
 
 
@@ -138,21 +235,70 @@ Front-end testing was carried out through various stages to ensure our applicati
 <b>Local Development Testing</b>
 Each of the features were developed locally and systematically tested in a local development environment. This initial testing phase involved testing the functionality of individual functions, components, and pages.
 
-<b>Public Development Testing</b>
-Once the features were establised in the local environment, they were pushed to a development branch. Here, our testing was carried out using a public development database to simulate real-world usage and ensure compatibility with production settings. This phase also included testing on different devices and screen sizes, such as iphones, tablets and desktops to ensure the application’s accessibility and responsiveness.
+<b> Development Testing</b>
+
+Once the features were establised in the local environment, they were pushed to a development branch. Here, our testing was carried out using a development database to simulate real-world usage and ensure compatibility with production settings. This phase also included testing on different devices and screen sizes, such as iphones, tablets and desktops to ensure the application’s accessibility and responsiveness.
+
+Dev Testing Spreadsheet:
+
+Link:
+
+#### [Development_testing_spreadsheet](https://docs.google.com/spreadsheets/d/1WW8tX3r5DMhIfD-U2KI3p-2ZgdJLPxJ8KfUsG6qoXHs/edit?gid=0#gid=0)
+
+Image of Dev Testing spreadsheet:
+
+![dev_test1](./public/images/development_testing.png)
+
+Testing Images saved in drive:
+
+Link:
+
+#### [Development_Testing_Images](https://drive.google.com/drive/folders/1IpM6sXtMSiIWg64UyHET883717-cXl6j)
+
+![dev_test2](./public/images/dev_testing.png)
+
+![dev_test3](./public/images/dev_test2.png)
+
 
 <b>Production User Testing</b>
+
 Features were then tested in a staging environment that closely mirrored the production setup. This phase involved gathering feedback from real users to validate the usability and functionality of the application in a near-production environment.
 
 Results from user testing, including feedback and observations related to the login and sign-up workflows. Additionally, a screenshot capturing further notes from the user testing is also provided.
 
 For additional context and visualization, screenshots of the testing processes and results are provided below, including commits and pushes to the dev branch.
 
+Production Testing spreadsheet:
+
+Link:
+
+##### [Production Testing](https://docs.google.com/spreadsheets/d/1WW8tX3r5DMhIfD-U2KI3p-2ZgdJLPxJ8KfUsG6qoXHs/edit?gid=290345795#gid=290345795)
+
+Image of Prod Testing spreadsheet:
+
+![prod_test](./public/images/production_testing.png)
+
+Prod Testing images saved in drive:
+
+#### [Development_Testing_Images](https://drive.google.com/drive/folders/1IpM6sXtMSiIWg64UyHET883717-cXl6j)
+
+![prod_test2](./public/images/prod_testing.png)
+
+![prod_test3](./public/images/prod_test3.png)
+
+![prod_test4](./public/images/prod_test4.png)
+
+##  PresentPals Application Source Control Methodology
+
+
+
 ## Project Management Methodology
 
 Trello Board
 Trello Board Implementation for Streamlined Project Management
 **Trello Board Implementation for Streamlined Project Management**
+
+##### [Trello_Board-PresentPals](https://trello.com/b/9SJfdpYQ/presentpals-app-t3-a2fullstack-app)
 
 To enhance our project planning and execution, we strategically adopted Trello as our project management tool, leveraging its flexibility and the Kanban methodology to streamline our workflow. The Kanban approach, known for its visual task management system, allowed us to maintain a continuous flow of work while effectively minimising bottlenecks and disruptions throughout the project lifecycle.
 
@@ -204,16 +350,10 @@ This colour coded system allowed us to see at a glance the stages of the tasks, 
 ![image_trello_5](./public/images/Trello5.png)
 
 
-## Discord Server
+## Discord Server for Team Communication
 
 We established a Discord server to facilitate streamlined communication and enhance our collaboration accross our team. To improve efficiency we leveraged the lounge feature and utilised screen sharing enabling us to visualise and discuss changes in real time, as well as carry out testing.
 
 ![image_Discord1](./public/images/Discord_Server1.png)
 ![image_Discord2](./public/images/Discord_Server2.png)
 ![image_Discord3](./public/images/Discord_Server3.png)
-
-
-
-## Testing
-
-Extensive testing was carried out in a manual format
