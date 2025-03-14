@@ -112,7 +112,14 @@ const EventForm = () => {
   const childUsers = Array.isArray(users) ? users.filter((user) => user.child) : []; 
 
   return (
-    <div>
+    <div className="vh-100 vw-100 bg-image"
+    style={{
+      backgroundImage: "url(/Background2.jpg)",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      height: "100vh",
+      width: "100%",
+    }}>
     <HamburgerMenu />
     <form className="mt-5"onSubmit={handleSubmit} style={formStyle}>
       <h2>Create Event List</h2>

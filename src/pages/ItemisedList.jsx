@@ -17,12 +17,14 @@ function WishList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-      // get all the gifts from the certain gift list id.
+    // get all the gifts from the certain gift list id.
     const fetchGifts = async () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          alert("No token found, so the user is not authenticated. Please log back into the aplication.");
+          alert(
+            "No token found, so the user is not authenticated. Please log back into the aplication."
+          );
           return;
         }
 
@@ -48,9 +50,10 @@ function WishList() {
           items.filter((childItems) => childItems.giftName !== "")
         );
         if (response.status === 500) {
-          alert("There is a error / no connection with the server.  Please contact your admin.")
+          alert(
+            "There is a error / no connection with the server.  Please contact your admin."
+          );
         }
-
       } catch (error) {
         console.error("Error fetching the giftlist:", error);
       }
@@ -60,16 +63,19 @@ function WishList() {
       try {
         const token = localStorage.getItem("token");
         // get user data from the user route
-        const response = await axios.get("https://server-9w3v.onrender.com/api/user/", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          "https://server-9w3v.onrender.com/api/user/",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
         // console.log("API Response:", response.data);
         // user data from the backend assigned to a variable
         const fetchUsers = Array.isArray(response.data.users)
           ? response.data.users
           : [];
-          // users state set with the fetched data
+        // users state set with the fetched data
         setUsers(fetchUsers);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -115,15 +121,17 @@ function WishList() {
           },
         }
       );
-      const resData = response.data
+      const resData = response.data;
       if (response.status === 201) {
         alert("Shared user added successfully to this list!");
-      } else if (response.status === 401 && resData && resData.message){
-        alert(resData.message)
-      } else if (response.status === 403 && resData && resData.message){
-        alert(resData.message)
+      } else if (response.status === 401 && resData && resData.message) {
+        alert(resData.message);
+      } else if (response.status === 403 && resData && resData.message) {
+        alert(resData.message);
       } else if (response.status === 500) {
-        alert("There is a error / no connection with the server.  Please contact your admin.")
+        alert(
+          "There is a error / no connection with the server.  Please contact your admin."
+        );
       } else {
         alert("Something went wrong. Please try again.");
       }
@@ -156,7 +164,9 @@ function WishList() {
           navigate("/api/giftlist/"); // Redirect to events page after deletion
         }, 1000); // Wait 1 second to show the message before redirecting
       } else if (response.status === 500) {
-        alert("There is a error / no connection with the server.  Please contact your admin.")
+        alert(
+          "There is a error / no connection with the server.  Please contact your admin."
+        );
       }
     } catch (error) {
       console.error("There was an error deleting this giftlist!", error);
@@ -164,7 +174,7 @@ function WishList() {
     }
   };
   // find users where child = false
-  const parentUsers = users.filter((user) => !user.child); 
+  const parentUsers = users.filter((user) => !user.child);
   // get the admin & child statuses from the components
   const isAdmin = AdminStatus();
   const { child } = ChildStatus();
@@ -191,9 +201,23 @@ function WishList() {
                   display: "flex",
                   flexDirection: "column",
                   gap: "15px",
+                  width: "300px",
                 }}
               >
-                <div style={{ border: "3px solid white", padding: "20px" }}>
+                <div
+                  className="item-box"
+                  style={{
+                    border: "3px solid white",
+                    padding: "20px",
+                    maxWidth: "100%", // Ensures box doesn't exceed the container's width
+                    maxHeight: "450px", // Fixed max height to fit content
+                    overflow: "hidden", // Hide any overflowed content
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <li style={{ listStyle: "none" }}>
                     {gift.giftImage && (
                       <img
@@ -208,13 +232,15 @@ function WishList() {
                       />
                     )}
                   </li>
-                  <li style={{ listStyle: "none" }}>{gift.giftName}</li>
+                  <li style={{ listStyle: "none", fontWeight: "bold" }}>
+                    {gift.giftName}
+                  </li>
                   <li
                     style={{
                       listStyle: "none",
-                      width: "300px", 
-                      wordWrap: "break-word", 
+                      wordWrap: "break-word",
                       overflowWrap: "break-word",
+                      textAlign: "center",
                     }}
                   >
                     {gift.giftDescription}
@@ -228,6 +254,9 @@ function WishList() {
                           border: "4px solid #28E3DE",
                           borderRadius: "20px",
                           backgroundColor: "#28E3DE",
+                          padding: "10px 20px",
+                          marginTop: "15px",
+                          fontSize: "14px",
                         }}
                       >
                         View Gift Details
@@ -236,15 +265,17 @@ function WishList() {
                         <div
                           className=""
                           style={{
+                            fontSize:"11px",
                             color: "black",
-                            width: "300px",
+                            width: "100%",
                             textAlign: "center",
                             background: "yellow",
                             borderRadius: "20px",
                             padding: "5px",
+                            marginTop: "10px",
                           }}
                         >
-                          Username:{gift.purchasedBy}, has marked this as
+                          Username: {gift.purchasedBy}, marked as
                           purchased.
                         </div>
                       )}
@@ -256,31 +287,31 @@ function WishList() {
           ))
         ) : (
           <div>
-            <label>
+            <label style={{ color: "red", fontSize: "20px" }}>
               There are no current gift items. Select Add Item To List:
             </label>
           </div>
         )}
-        </div>
+      </div>
 
-        {child || isAdmin ? (
-          <div className="d-flex flex-column justify-content-center align-items-center mb-3">
-            <br></br>
-            <Link to={"add"}>
-              <button
-                className="btn"
-                style={{
-                  border: "4px solid #28E3DE",
-                  borderRadius: "20px",
-                  backgroundColor: "#28E3DE",
-                }}
-              >
-                Add Item To List
-              </button>
-            </Link>
-          </div>
-        ) : null}
-      
+      {child || isAdmin ? (
+        <div className="d-flex flex-column justify-content-center align-items-center mb-3">
+          <br></br>
+          <Link to={"add"}>
+            <button
+              className="btn"
+              style={{
+                border: "4px solid #28E3DE",
+                borderRadius: "20px",
+                backgroundColor: "#28E3DE",
+              }}
+            >
+              Add Item To List
+            </button>
+          </Link>
+        </div>
+      ) : null}
+
       {!child || isAdmin ? (
         <form
           className="d-flex flex-column justify-content-center align-items-center"

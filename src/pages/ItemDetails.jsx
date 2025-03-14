@@ -187,7 +187,7 @@ const ItemDetails = () => {
                 </select>
                 {/* Purchase Button */}
                 <button
-                  style={{ background: "#28e3da", fontSize: "20px" }}
+                  style={{ background: "#28e3da", fontSize: "15px" }}
                   onClick={handlePurchaseItem}
                 >
                   Mark You As Purchasing This Item.

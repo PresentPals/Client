@@ -61,7 +61,7 @@ function Signup() {
     <section
       className="vh-100 vw-100 bg-image"
       style={{
-        backgroundImage: "url(/test-image.png)",
+        backgroundImage: "url(/Background1.jpg)",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         height: "100vh",
@@ -83,9 +83,9 @@ function Signup() {
                       borderRadius: "10px",
                     }}
                   />
-                  <h3 className="text-uppercase text-center mb-3">
+                  <h4 className="text-uppercase text-center mt-2 mb-2">
                     Sign Up To Presentpals
-                  </h3>
+                  </h4>
 
                   <form style={{ width: "20rem" }} onSubmit={handleSubmit}>
                     {/* User Name */}

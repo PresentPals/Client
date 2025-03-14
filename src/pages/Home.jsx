@@ -8,14 +8,14 @@ function Home() {
     <div
       className="position-relative vh-100 vw-100 d-flex justify-content-center align-items-center"
       style={{
-        backgroundImage: "url('/test-image.png')",
+        backgroundImage: "url('/BackgroundPres.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
       <div
-        className="position-absolute top-0 bg-black text-white p-4 rounded shadow-lg text-center"
-        style={{ width: "400px" }}
+        className="position-absolute top-0 bg-black rounded shadow-lg text-center"
+        style={{ width: "400px", gap: "5px", padding: "20px" }}
       >
         <img
           src="/ppals_logo.png"
@@ -33,7 +33,7 @@ function Home() {
           </p>
         
       </div>
-      <div className="flex-box d-flex flex-column justify-content-center align-items-center">
+      <div className="flex-box d-flex flex-column justify-content-center align-items-center mt-5">
         <a href="/api/auth/signup" className="btn custom-btn mt-5"style={{ color: "black", fontWeight: "bold", important: "true", fontSize: "3rem", padding: "10px 20px", borderRadius: "10px",}}>
           Sign Up Now
         </a>
@@ -41,12 +41,14 @@ function Home() {
           Log In Now
         </a>
       </div>
+      <div className="home-text">
       <p
-        className="text-center position-absolute bottom-0 start-50 translate-middle-x "
-        style={{ color: "black", fontWeight: "bold", important: "true" }}
+        className="scrolling-text"
+        style={{ color: "#28e3da", fontWeight: "bold", important: "true" }}
       >
-        The simple Gift List App for your family and friends. Both children and adults can use this app to simplify the gifting situations for group events.
+        The simple Gift List App, your family and friends both children and adults can use to simplify the gifting situations for group events.
       </p>
+      </div>
     </div>
   );
 }

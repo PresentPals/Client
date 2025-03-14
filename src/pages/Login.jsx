@@ -58,8 +58,8 @@ function Login() {
     <section className="vh-100 vw-80" style={{backgroundColor: "black"}}>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-sm-6 text-white">
-            <div className="text-md-center mt-4 px-5 ms-xl-4">
+          <div className="align-items-center col-sm-6 text-white">
+            <div className="text-md-center mt-4 px-5 ms-xl-1">
             <img 
                 src="/ppals_logo.png" 
                 alt="PresentPals Logo" 
@@ -67,7 +67,7 @@ function Login() {
               />
             </div>
 
-            <div className="d-flex text-md-center align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+            <div className="d-flex flex-column justify-content-center align-items-center text-center px-5">
               <form style={{ width: '23rem', color: '#28E3DA'  }} onSubmit={handleSubmit}>
 
                 <h3 className="fw-bold mb-3 pb-3" style={{ letterSpacing: '1px' }}>Log in</h3>

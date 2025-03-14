@@ -19,17 +19,22 @@ function DisplayProfiles() {
       try {
         //get the security token
         const token = localStorage.getItem("token");
-        
+
         if (!token) {
-          alert("No security token found, so the user is not authenticated. Please log back into the application. ");
+          alert(
+            "No security token found, so the user is not authenticated. Please log back into the application. "
+          );
           return;
         }
         //get user data from the user route
-        const response = await axios.get("https://server-9w3v.onrender.com/api/user/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          "https://server-9w3v.onrender.com/api/user/",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         // console.log("Response data:", response.data);
         // users data response from db & sets the profiles state:
@@ -39,7 +44,9 @@ function DisplayProfiles() {
           setProfiles([]);
         }
         if (response.status === 500) {
-          alert("There is a error / no connection with the server.  Please contact your admin.")
+          alert(
+            "There is a error / no connection with the server.  Please contact your admin."
+          );
         }
       } catch (error) {
         console.error("Error fetching profiles:", error);
@@ -54,21 +61,35 @@ function DisplayProfiles() {
   const displayChild = profiles.find((user) => user._id === childId);
 
   return (
-    <div>
+    <div
+      className="vh-100 vw-100 bg-image"
+      style={{
+        backgroundImage: "url(/Background2.jpg)",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
       <HamburgerMenu className="dropdown-menu" />
-      <div className="d-flex flex-column justify-content-center align-items-center">
+      <div
+        className="d-flex flex-column justify-content-center align-items-center mb-3"
+        style={{ backgroundColor: "black" }}
+      >
         <img src="/ppals_logo.png" alt="logo" />
         <h2>PresentPals Profiles</h2>
       </div>
       {child && displayChild ? (
         <div>
           <Link to={`${displayChild._id}`}>
-            <button className="btn"
-                    style={{
-                      border: "4px solid #28E3DE",
-                      borderRadius: "20px",
-                      backgroundColor: "#28E3DE",
-                    }}>
+            <button
+              className="btn"
+              style={{
+                border: "4px solid #28E3DE",
+                borderRadius: "20px",
+                backgroundColor: "#28E3DE",
+              }}
+            >
               <div
                 dangerouslySetInnerHTML={{ __html: displayChild.userImage }}
               />
@@ -79,23 +100,35 @@ function DisplayProfiles() {
       ) : (
         <div className="d-flex justify-content-center flex-wrap">
           {profiles.map((profile) => (
-              <ul className="" key={profile._id}>
-                <Link to={`${profile._id}`}>
-                  <button
-                    className="btn"
-                    style={{
-                      border: "4px solid #28E3DE",
-                      borderRadius: "20px",
-                      backgroundColor: "#28E3DE",
-                    }}
-                  >Edit
-                    <div
-                      dangerouslySetInnerHTML={{ __html: profile.userImage }}
-                    />
-                    {profile.firstname} {profile.lastname}
-                  </button>
-                </Link>
-              </ul>
+            <ul className="" key={profile._id}>
+              <Link to={`${profile._id}`}>
+                <button
+                  className="btn"
+                  style={{
+                    border: "4px solid #28E3DE",
+                    borderRadius: "20px",
+                    backgroundColor: "#28E3DE",
+                  }}
+                >
+                  Edit Profile
+                  <div
+                    dangerouslySetInnerHTML={{ __html: profile.userImage }}
+                  />
+                  {profile.firstname} {profile.lastname}
+                  {profile.admin && (
+                <span
+                  style={{
+                    color: "red",
+                    marginLeft: "10px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Group Admin
+                </span>
+              )}
+                </button>
+              </Link>
+            </ul>
           ))}
           {isAdmin && (
             <ul className="mt-4">

@@ -26,7 +26,7 @@ function About() {
       saving time and reducing waste.
     </p>
     
-    <div style={{ width: "100%", maxWidth: "600px", height: "auto" }}>
+    <div style={{ width: "200px", height: "auto" }}>
       <LoginVideo />
     </div>
   </div>
