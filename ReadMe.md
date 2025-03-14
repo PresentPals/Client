@@ -10,17 +10,21 @@
     
     login (admin): darrens 
     password: 12345678
- 
 
-## Repositories
+PresentPals front end is deployed via Netlify.
+PresentPals back end is deployed via Render. 
 
-[GitHub](./public/images/GitHub.png)
+## Git Hub Repositories
+
+![GitHub](./public/images/GitHub.png)
 
 [GitHub_Repository](https://github.com/PresentPals)
 
 [GitHub_Client](https://github.com/PresentPals/Client)
 
 [GitHub_Server](https://github.com/PresentPals/server)
+
+[GitHub_PartA_docs](https://github.com/PresentPals/Part_A_Documents)
 
 ## Trello Board
 
@@ -290,7 +294,35 @@ Prod Testing images saved in drive:
 
 ##  PresentPals Application Source Control Methodology
 
+Presentpals development team utilised two github repositories:
 
+1. For the Client (front end) of the application.
+
+2. For the Server (back end) of the application.
+
+During the development project all teams members worked and coordinated multiple branches for multilpe jobs related to the building of both repos for the front & back end:
+
+Client Branches:
+
+![client_branches](./public/images/github_client_branches.png)
+
+Server Branches:
+
+![server_branches](./public/images/github_server_branches.png)
+
+Each team member while performing there duties in coding , writing there assigned branch job, accomplished multiple git push requests and branch pull requests to merge the code together into a working dev_branch fir testing and then a main branch for final deployemnt:
+
+Tanias Git request performance:
+
+![Tania_git](./public/images/Tania_git.png)
+
+Venitas Gut request performance:
+
+![Venita_git](./public/images/Venita_git.png)
+
+Darrens Git request performance:
+
+![Dazza_git](./public/images/Dazza_git.png)
 
 ## Project Management Methodology
 
