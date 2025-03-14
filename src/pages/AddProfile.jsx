@@ -72,19 +72,21 @@ function NewProfile() {
         setTimeout(() => {
           navigate("/api/user"); // Redirect to profiles page after saved
         }, 1000);
-      } else if (response.status === 400 && resData && resData.message){
-        alert(resData.message)
-      } else if (response.status === 401 && resData && resData.message){
-        alert(resData.message)
-      } else if (response.status === 403 && resData && resData.message){
-        alert(resData.message)
-      } else if (response.status === 500){
-        alert("There is a error / no connection with the server.  Please contact your admin.")
-      } else {
-        alert("Add new profile failed, please try again.");
       }
-    } catch (error) {
-      console.error("There was an error updating the profile!", error);
+      } catch (error) {
+      
+        if (error.response) {
+          
+          alert(error.response.data.message || "Something went wrong. Please try again. ");
+        } else if (error.request) {
+          
+          alert("No response from the server. Please check your internet connection.");
+        } else {
+          
+          alert("An unexpected error occurred.");
+        }
+    
+      console.error("There was an error adding the profile!", error);
     }
   };
   // Handle selection change in the child selection dropdown

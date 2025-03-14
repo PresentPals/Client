@@ -110,18 +110,20 @@ function EditProfile() {
         setTimeout(() => {
           navigate("/api/user"); // Redirect to profiles page after saved
         }, 1000);
-      } else if (response.status === 404 && data.message){
-        alert(data.message)
-      } else if (response.status === 401 && data.message){
-        alert(data.message)
-      } else if (response.status === 403 && data.message){
-        alert(data.message)
-      } else if (response.status === 500){
-        alert("There is a error / no connection with the server.  Please contact your admin.")
-      } else {
-        alert("Updating profile failed, please try again.");
       }
-    } catch (error) {
+      } catch (error) {
+      
+        if (error.response) {
+          
+          alert(error.response.data.message || "Something went wrong. Please try again. ");
+        } else if (error.request) {
+          
+          alert("No response from the server. Please check your internet connection.");
+        } else {
+          
+          alert("An unexpected error occurred.");
+        }
+    
       console.error("There was an error updating the profile!", error);
     }
   };
@@ -157,18 +159,20 @@ function EditProfile() {
         setTimeout(() => {
           navigate("/api/user"); // Redirect to profiles page after deletion
         }, 2000); // Wait 2 seconds to show the message before redirecting
-      } else if (response.status === 404 && data.message){
-        alert(data.message)
-      } else if (response.status === 401 && data.message){
-        alert(data.message)
-      } else if (response.status === 403 && data.message){
-        alert(data.message)
-      } else if (response.status === 500){
-        alert("There is a error / no connection with the server.  Please contact your admin.")
-      } else {
-        alert("Deleting profile failed, please try again.");
       }
-    } catch (error) {
+      } catch (error) {
+      
+        if (error.response) {
+          
+          alert(error.response.data.message || "Something went wrong. Please try again. ");
+        } else if (error.request) {
+          
+          alert("No response from the server. Please check your internet connection.");
+        } else {
+          
+          alert("An unexpected error occurred.");
+        }
+    
       console.error("There was an error deleting the profile!", error);
     }
   };
